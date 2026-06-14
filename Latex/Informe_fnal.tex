@@ -64,7 +64,8 @@ Concluimos que el artículo trata la XAI como un puente entre la capacidad predi
 
 \clearpage
 
-\textbf{Pregunta 1:} ¿Qué distingue conceptualmente a la Inteligencia Artificial o «IA» de la Estadística en este artículo?
+\section*{Pregunta 1}
+¿Qué distingue conceptualmente a la Inteligencia Artificial o «IA» de la Estadística en este artículo?
 
 \medskip
 
@@ -112,28 +113,64 @@ En conclusión, la respuesta depende de la definición de explicar que se adopte
 % PREGUNTA 3
 % ============================================================
 
-\textbf{Pregunta 3:} En muchas aplicaciones de Machine Learning, las relaciones identificadas por los modelos están guiadas principalmente por patrones presentes en los datos y por objetivos predictivos, sin una justificación teórica explícita del fenómeno subyacente. ¿Qué evidencia entrega el artículo para justificar que el patrón identificado corresponde al fenómeno estudiado?
+\section*{Pregunta 3}
 
-\medskip
+\textit{En muchas aplicaciones de Machine Learning, las relaciones identificadas
+por los modelos est\'an guiadas principalmente por patrones presentes en los
+datos y por objetivos predictivos, sin una justificaci\'on te\'orica expl\'icita
+del fen\'omeno subyacente. \textquestiondown Qu\'e evidencia entrega el art\'iculo
+para justificar que el patr\'on identificado corresponde al fen\'omeno estudiado?}
 
-Para responder esta pregunta, se evaluarán todas las conclusiones obtenidas relacionadas con el fenómeno investigado y la base que llevó a cada una de ellas.
+\vspace{0.5em}
 
-\medskip
+Para responder esta pregunta, se evaluar\'an todas las conclusiones obtenidas
+relacionadas con el fen\'omeno investigado y la base que llev\'o a cada una de ellas.
 
-\noindent \textbf{La primera conclusión:} \textit{Quienes fallecen por suicidio tienden a ser personas con trastornos o enfermedades} (Tang et al., 2024, Fig.~1). Esta conclusión se obtiene mediante una nube de palabras formada con la base de datos obtenida; no se entrega otro tipo de información para justificar dicha inferencia.
+\textbf{La primera conclusi\'on:} \emph{Quienes fallecen por suicidio tienden a
+ser personas con trastornos o enfermedades} (Tang et al., 2024, Fig. 1). Esta
+conclusi\'on se obtiene mediante una nube de palabras formada con la base de datos
+obtenida; no se entrega otro tipo de informaci\'on para justificar dicha inferencia.
+Se trata de una descripci\'on del propio conjunto de datos, no de una hip\'otesis
+contrastada sobre el mecanismo que lo genera, distinci\'on que Shmueli (2010) sit\'ua
+en el centro del \emph{explanatory modeling}.
 
-\medskip
+\textbf{La segunda conclusi\'on:} \emph{Las personas con altos ingresos y una
+ocupaci\'on respetable presentan menores tasas de suicidio} (Tang et al., 2024).
+Se lleg\'o a esta conclusi\'on a trav\'es de un gr\'afico de barras elaborado con
+la base de datos, el cual mostraba que las personas desempleadas tienen el mayor
+riesgo de suicidio, mientras que el personal de seguridad y los polic\'ias presentan
+el menor riesgo. Tambi\'en se menciona que la conclusi\'on obtenida coincide con los
+resultados de otros estudios, aunque no se profundiza en los motivos de la existencia
+del patr\'on encontrado; solo se se\~nala que este existe. Como advierte Pearl (2009),
+la coincidencia entre estudios refuerza la regularidad de la asociaci\'on, pero no la
+eleva a relaci\'on causal mientras no se controlen confusores ni se intervenga sobre
+las variables.
 
-\noindent \textbf{La segunda conclusión:} \textit{Las personas con altos ingresos y una ocupación respetable presentan menores tasas de suicidio} (Tang et al., 2024). Se llegó a esta conclusión a través de un gráfico de barras elaborado con la base de datos, el cual mostraba que las personas desempleadas tienen el mayor riesgo de suicidio, mientras que el personal de seguridad y los policías presentan el menor riesgo. También se menciona que la conclusión obtenida coincide con los resultados de otros estudios, aunque no se profundiza en los motivos de la existencia del patrón encontrado; solo se señala que este existe.
+Posteriormente, mediante modelos de predicci\'on, la matriz de correlaci\'on y el
+c\'alculo de los valores SHAP, se obtiene que factores como tener problemas de ira o
+depresi\'on pueden aumentar el riesgo de suicidio de los individuos (Tang et al., 2024,
+Fig. 6b). Por otro lado, factores como un alto nivel educativo disminuyen dicho riesgo
+(Tang et al., 2024, Fig. 7). Los resultados obtenidos coinciden con las conclusiones
+anteriores, con la diferencia de que fueron alcanzados mediante m\'etodos m\'as complejos.
+Sin embargo, a pesar de ofrecer mayor evidencia a trav\'es de los valores SHAP, estos se
+calculan utilizando la misma base de datos, por lo que contin\'ua el patr\'on de basar las
+conclusiones \'unicamente en ella. Esta dependencia se acent\'ua porque incluso la
+ampliaci\'on de la muestra se genera con t\'ecnicas de aumento de datos (CTGAN y SMOTENC)
+que sintetizan registros a partir de la distribuci\'on original (Chawla et al., 2002;
+Xu et al., 2019); en consecuencia, las atribuciones SHAP describen el modelo, la cultura
+predictiva de Breiman (2001), y no el mecanismo del fen\'omeno.
 
-\medskip
-
-\noindent Posteriormente, mediante modelos de predicción, la matriz de correlación y el cálculo de los valores \textit{SHAP}, se obtiene que factores como tener problemas de ira o depresión pueden aumentar el riesgo de suicidio de los individuos (Tang et al., 2024, Fig.~6b). Por otro lado, factores como un alto nivel educativo disminuyen dicho riesgo (Tang et al., 2024, Fig.~7). Los resultados obtenidos coinciden con las conclusiones anteriores, con la diferencia de que fueron alcanzados mediante métodos más complejos. Sin embargo, a pesar de ofrecer mayor evidencia a través de los valores \textit{SHAP}, estos se calculan utilizando la misma base de datos, por lo que continúa el patrón de basar las conclusiones únicamente en ella.
-
-\medskip
-
-\noindent El análisis se limita a observar los registros y explicarlos mediante distintos modelos predictivos, sin ampliar su perspectiva. Ninguno de los apartados que presenta estas conclusiones las justifica desde un punto de vista psicológico o psiquiátrico, el cual podría complementar los resultados y mejorar la aplicación de estos modelos, dado que serían utilizados en el área médica. Es importante mencionar por ello, que el artículo se muestra consciente de esta limitación, y concluye que los modelos de predicción deberían ser utilizados en conjunto con el asesoramiento médico (Tang et al., 2024, Clinical Implications and Future Directions).
-
+El an\'alisis se limita a observar los registros y explicarlos mediante distintos modelos
+predictivos, sin ampliar su perspectiva. Ninguno de los apartados que presenta estas
+conclusiones las justifica desde un punto de vista psicol\'ogico o psiqui\'atrico, el cual
+podr\'ia complementar los resultados y mejorar la aplicaci\'on de estos modelos, dado que
+ser\'ian utilizados en el \'area m\'edica. En t\'erminos de Shmueli (2010) y Pearl (2009),
+el art\'iculo aporta evidencia de un patr\'on estable y \'util para predecir, pero no una
+justificaci\'on te\'orico-causal que lo vincule al fen\'omeno m\'as all\'a del conjunto de
+datos. Es importante mencionar por ello, que el art\'iculo se muestra consciente de esta
+limitaci\'on, y concluye que los modelos de predicci\'on deber\'ian ser utilizados en
+conjunto con el asesoramiento m\'edico (Tang et al., 2024, Clinical Implications and
+Future Directions).
 \clearpage
 
 % ============================================================
