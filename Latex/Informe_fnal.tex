@@ -47,11 +47,13 @@
 % ============================================================
 \section*{Resumen}
 
-Este trabajo analiza el artículo de Tang et al.\ (2024), que evalúa el uso de Inteligencia Artificial Explicable (XAI) para predecir el riesgo de suicidio a partir de datos de registro médico. El objetivo del informe es responder tres preguntas sobre dicho artículo: la distinción conceptual entre IA y Estadística, si el artículo separa predicción de explicación, y qué evidencia respalda que el patrón identificado corresponde al fenómeno estudiado.
+Este trabajo analiza el artículo de Tang et al.\ (2024), que evalúa el uso de Inteligencia Artificial Explicable (XAI) para predecir el riesgo de suicidio a partir de datos tabulares de registro médico. La motivación de los autores parte de una limitación reconocida en el área: las herramientas tradicionales de evaluación del riesgo, basadas mayoritariamente en escalas autoinformadas y juicio clínico, presentan un valor predictivo positivo bajo y resultan insuficientes para estratificar con precisión a los pacientes (Tang et al., 2024, Introducción). Frente a ello, el artículo propone combinar modelos de aprendizaje automático con un marco de explicabilidad que permita a los profesionales de la salud mental comprender y confiar en las predicciones.
 
-Los datos provienen del historial clínico de pacientes del Colombo South Teaching Hospital (Sri Lanka). El artículo combina aumento de datos (CTGAN y SMOTENC) con seis modelos de Machine Learning sobre un conjunto balanceado de 1000 registros y 19 variables predictoras del Colombo South Teaching Hospital, Sri Lanka (Tang et al., 2024, Método, p.~8); Random Forest obtiene el mejor desempeño (AUC = 97,05\,\% con aumento de datos; Tang et al., 2024, Tabla~1) y los valores SHAP identifican la ira, la depresión y el aislamiento social como predictores principales (Tang et al., 2024, Fig.~6b).
+El objetivo de este informe es responder tres preguntas sobre dicho artículo: (i) la distinción conceptual entre Inteligencia Artificial y Estadística; (ii) si el artículo separa de manera explícita la predicción de la explicación; y (iii) qué evidencia respalda que el patrón identificado por el modelo corresponde efectivamente al fenómeno estudiado y no a un mero artefacto de los datos.
 
-Concluimos que el artículo trata la XAI como un puente entre la capacidad predictiva del ML y la vocación explicativa de la Estadística: la ``explicación'' es atribución de importancia a las variables, no una explicación causal del suicidio.
+Los datos provienen del historial clínico de pacientes del Colombo South Teaching Hospital (Sri Lanka) y conforman un conjunto balanceado de 1000 registros (500 casos positivos y 500 negativos) con 19 variables predictoras de naturaleza numérica y categórica (Tang et al., 2024, Método, p.~8). Sobre esta base, el artículo aplica dos técnicas de aumento de datos (CTGAN y SMOTENC) para expandir la muestra de entrenamiento y mitigar el sobreajuste, y entrena seis modelos de Machine Learning (Regresión Logística, Árbol de Decisión, Random Forest, SVM, Perceptrón y XGBoost). Random Forest obtiene el mejor desempeño, alcanzando un AUC de 97{,}05\,\% tras el aumento de datos (Tang et al., 2024, Tabla~1). Para interpretar el modelo, los autores recurren a los valores SHAP, que identifican la ira, la depresión y el aislamiento social como los predictores principales del riesgo de suicidio (Tang et al., 2024, Fig.~6b).
+
+Concluimos que el artículo trata la XAI como un puente entre la capacidad predictiva del aprendizaje automático y la vocación explicativa de la Estadística. No obstante, conviene precisar el alcance de ese puente: la ``explicación'' que ofrece SHAP es una atribución de importancia a las variables (es decir, una descripción de cómo cada atributo contribuye a la salida del modelo), y no una explicación causal del suicidio. El método identifica asociaciones predictivas, pero no establece mecanismos causales ni descarta confusores, distinción que resulta central para las tres preguntas que guían este informe.
 
 \clearpage
 
@@ -59,23 +61,47 @@ Concluimos que el artículo trata la XAI como un puente entre la capacidad predi
 
 \medskip
 
+<<<<<<< Updated upstream
 % 1. Apertura: eje de comparación (predicción vs. inferencia)
 El artículo no presenta la Inteligencia Artificial (IA) y la Estadística como disciplinas opuestas, sino que las distingue por su finalidad. La Estadística busca inferir asociaciones e interpretar las relaciones entre variables, mientras que la IA, a través del aprendizaje automático (ML), prioriza la predicción de un resultado a partir de datos históricos.
+=======
+\noindent  El artículo no presenta la Inteligencia Artificial (IA) y la Estadística como disciplinas opuestas, sino que las distingue por su finalidad. La Estadística busca inferir asociaciones e interpretar las relaciones entre variables, mientras que la IA, a través del aprendizaje automático (ML), prioriza la predicción de un resultado a partir de datos históricos.
+>>>>>>> Stashed changes
 
 % 2. Estadística: correlación de Spearman, ranking, interpretabilidad
 En el estudio, la Estadística se materializa en el análisis de correlación de Spearman y en el mapa de calor, herramientas orientadas a cuantificar y ordenar la asociación entre variables; por ejemplo, la fuerte correlación entre el suicidio y los problemas de ira, el aislamiento social o la depresión (Tang et al., 2024, Fig.~3). Su valor reside en la interpretabilidad directa: cada coeficiente revela la dirección y la fuerza de una relación sin requerir explicaciones adicionales.
 
+<<<<<<< Updated upstream
 % 3. IA/ML: RF/XGBoost, métricas predictivas, no linealidad, "black box"
 La IA, en cambio, se expresa en modelos como Random Forest y XGBoost, evaluados por su desempeño predictivo (AUC = 97,05\,\%, F1 y precisión; Tang et al., 2024, Tabla~1). Estos modelos capturan relaciones complejas y no lineales que las técnicas clásicas no logran modelar (el artículo advierte que los métodos matemáticos tradicionales producen resultados menos precisos ante la complejidad del comportamiento humano), pero operan como cajas negras de baja interpretabilidad.
+=======
+\noindent  En el estudio, la Estadística se materializa en el análisis de correlación de Spearman y en el mapa de calor, herramientas orientadas a cuantificar y ordenar la asociación entre variables; por ejemplo, la fuerte correlación entre el suicidio y los problemas de ira, el aislamiento social o la depresión (Tang et al., 2024, Fig.~3). Su valor reside en la interpretabilidad directa: cada coeficiente revela la dirección y la fuerza de una relación sin requerir explicaciones adicionales.
+>>>>>>> Stashed changes
 
 % 4. Marco teórico: dos culturas (Breiman) y distinción explanatory/predictive (Shmueli)
 Esta tensión no es exclusiva del artículo. Breiman (2001) describió «dos culturas» del modelamiento: la del \textit{modelo de datos} estadística clásica, orientada a inferir la relación entre variables y la del \textit{modelo algorítmico} ML, orientado a predecir con precisión. Shmueli (2010) formalizó esta diferencia entre \textit{explanatory modeling} y \textit{predictive modeling}. El artículo de Tang et al.\ (2024) opera en la segunda cultura y emplea SHAP (Lundberg \& Lee, 2017), fundamentado en los valores de Shapley de la teoría de juegos cooperativos, para reintroducir interpretabilidad.
 
+<<<<<<< Updated upstream
 % 5. Puente XAI: SHAP devuelve interpretabilidad al modelo predictivo
 El puente entre ambos enfoques es, precisamente, la IA Explicable (XAI). Mediante SHAP, el artículo reintroduce la interpretabilidad en los modelos predictivos, asignando a cada variable una contribución positiva o negativa a la predicción individual. Así, la capacidad predictiva de la IA converge con la vocación explicativa de la Estadística.
 
 % 5. Cierre crítico: distinción funcional, no tajante; solapamiento
 La distinción es, por tanto, funcional más que tajante. Varios de los ``modelos de ML'' empleados (regresión logística, Lasso y Ridge) son métodos estadísticos clásicos, y el propio SHAP se funda en la teoría de juegos cooperativos. El artículo trata la IA como una extensión predictiva de la Estadística, no como su antítesis.
+=======
+\noindent  La IA, en cambio, se expresa en modelos como Random Forest y XGBoost, evaluados por su desempeño predictivo (AUC = 97,05\,\%, F1 y precisión; Tang et al., 2024, Tabla~1). Estos modelos capturan relaciones complejas y no lineales que las técnicas clásicas no logran modelar (el artículo advierte que los métodos matemáticos tradicionales producen resultados menos precisos ante la complejidad del comportamiento humano), pero operan como cajas negras de baja interpretabilidad.
+
+\vspace{0.15cm}
+
+\noindent  Esta tensión no es exclusiva del artículo. Breiman (2001) describió «dos culturas» del modelamiento: la del \textit{modelo de datos} estadística clásica, orientada a inferir la relación entre variables y la del \textit{modelo algorítmico} ML, orientado a predecir con precisión. Shmueli (2010) formalizó esta diferencia entre \textit{explanatory modeling} y \textit{predictive modeling}. El artículo de Tang et al.\ (2024) opera en la segunda cultura y emplea SHAP (Lundberg \& Lee, 2017), fundamentado en los valores de Shapley de la teoría de juegos cooperativos, para reintroducir interpretabilidad.
+
+\vspace{0.15cm}
+
+\noindent  Mediante SHAP, el artículo reintroduce la interpretabilidad en los modelos predictivos, asignando a cada variable una contribución positiva o negativa a la predicción individual. Así, la capacidad predictiva de la IA converge con la vocación explicativa de la Estadística.
+
+\vspace{0.15cm}
+
+\noindent  La distinción es, por tanto, funcional más que tajante. Varios de los ``modelos de ML'' empleados (regresión logística, Lasso y Ridge) son métodos estadísticos clásicos, y el propio SHAP se funda en la teoría de juegos cooperativos. El artículo trata la IA como una extensión predictiva de la Estadística, no como su antítesis.
+>>>>>>> Stashed changes
 
 \clearpage
 
@@ -101,19 +127,40 @@ En cambio, si se considera la segunda definición, la respuesta es \textbf{no}. 
 % ============================================================
 % PREGUNTA 3
 % ============================================================
+<<<<<<< Updated upstream
 \textbf{Pregunta 3:} En muchas aplicaciones de Machine Learning, las relaciones identificadas por los modelos están guiadas principalmente por patrones presentes en los datos y por objetivos predictivos, sin una justificación teórica explícita del fenómeno subyacente. ¿Qué evidencia entrega el artículo para justificar que el patrón identificado corresponde al fenómeno estudiado?
+=======
+\subsection*{Pregunta 3}
+\noindent  En muchas aplicaciones de Machine Learning, las relaciones identificadas por los modelos están guiadas principalmente por patrones presentes en los datos y por objetivos predictivos, sin una justificación teórica explícita del fenómeno subyacente. ¿Qué evidencia entrega el artículo para justificar que el patrón identificado corresponde al fenómeno estudiado?
+>>>>>>> Stashed changes
 
 \medskip
 
 Para responder esta pregunta se evaluarán todas las conclusiones obtenidas relacionadas al fenómeno investigado y la base que llevó a cada conclusión:
 
+<<<<<<< Updated upstream
 La primera conclusión es que aquellos que fallecen por suicidio tienden a ser personas con desordenes o enfermedades. La conclusión se obtiene mediante una nube de palabras formada con la base de datos obtenida, no se entrega otro tipo de información para justificar la inferencia.
+=======
+\noindent  La primera conclusión es que aquellos que fallecen por suicidio tienden a ser personas con desordenes o enfermedades. La conclusión se obtiene mediante una nube de palabras formada con la base de datos obtenida; no se entrega otro tipo de información que justifique la inferencia.
+>>>>>>> Stashed changes
 
 La segunda conclusión fue que la gente con altos ingresos y una vocación respetable tienen menor tasa de suicidios. Se llegó a esta conclusión a través de un gráfico de barras de la base de datos que mostraba que la gente desempleada tiene el mayor riesgo de suicidio, y el personal de seguridad y policías tienen el menor riesgo. Se menciona también que la conclusión obtenida coincide con el resultado de otros estudios, aunque no profundiza en los motivos de la existencia del patrón encontrado, solo menciona que existe.
 
+<<<<<<< Updated upstream
 Posteriormente mediante modelos de predicción, la matriz de correlación y el cálculo de los valores SHAP se obtiene que factores como tener problemas con la ira o depresión, pueden aumentar el riesgo de suicidio de los individuos. Por el otro lado, factores como un alto nivel de educación disminuyen el riesgo de suicidio. Los resultados sacados coinciden con las conclusiones anteriores con la diferencia que fueron obtenidos mediante métodos más complejos. Sin embargo, a pesar de ofrecer mayor evidencia en la forma de los valores SHAP, estos son calculados utilizando la misma base de datos, por lo que el patrón de basar las conclusiones solo en la base de datos continua.
 
 El análisis se limita a observar los registros y explicarlos mediante distintos modelos predictivos sin extender su visión. Ninguno de los apartados que entrega estas conclusiones las justifica mediante el punto de vista psicológico o psiquiátrico, el cual podría complementar los resultados y mejorar la aplicación de estos modelos, dado que estos serían utilizados en el área médica.
+=======
+\noindent La segunda conclusión fue que la gente con altos ingresos y una vocación respetable tienen menor tasa de suicidios. Se llegó a esta conclusión a través de un gráfico de barras de la base de datos que mostraba que la gente desempleada tiene el mayor riesgo de suicidio, y el personal de seguridad y policías tienen el menor riesgo. Se menciona también que la conclusión obtenida coincide con el resultado de otros estudios, aunque no profundiza en los motivos de la existencia del patrón encontrado.
+
+\vspace{0.15cm}
+
+\noindent  Posteriormente, mediante modelos de predicción, la matriz de correlación y el cálculo de los valores SHAP se obtiene que factores como tener problemas con la ira o depresión pueden aumentar el riesgo de suicidio de los individuos. Por otro lado, factores como un alto nivel de educación disminuyen el riesgo. A pesar de ofrecer mayor evidencia en la forma de los valores SHAP, estos se calculan en la misma base de datos, por lo que las conclusiones dependen de esa fuente.
+
+\vspace{0.15cm}
+
+\noindent  El análisis se limita a observar los registros y explicarlos mediante distintos modelos predictivos sin extender su visión. Ninguno de los apartados que entrega estas conclusiones las justifica mediante el punto de vista psicológico o psiquiátrico, el cual podría complementar los resultados y mejorar la aplicación de estos modelos en el área médica.
+>>>>>>> Stashed changes
 
 \clearpage
 
