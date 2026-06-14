@@ -1,0 +1,512 @@
+% ============================================================
+%  Presentación — Tang et al. (2024) | EYP3507 Bioestadística
+%  Paleta oficial Pontificia Universidad Católica de Chile
+% ============================================================
+\documentclass[aspectratio=169,12pt]{beamer}
+
+% ── Paquetes ───────────────────────────────────────────────
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+\usepackage{array}
+\usepackage{microtype}
+
+% ── Paleta PUC ─────────────────────────────────────────────
+%  Azul institucional, dorado, complementarios
+\definecolor{PUCblue}{HTML}{003A70}     % Azul marino UC
+\definecolor{PUCgold}{HTML}{C8963E}     % Dorado UC
+\definecolor{PUClight}{HTML}{E8EEF4}    % Azul muy claro (fondos)
+\definecolor{PUCmid}{HTML}{5B8DB8}      % Azul medio (acentos)
+\definecolor{PUCgray}{HTML}{4A4A4A}     % Gris texto
+\definecolor{PUCwhite}{HTML}{FFFFFF}
+\definecolor{PUCred}{HTML}{C0392B}      % Rojo alerta/énfasis
+\definecolor{PUCgreen}{HTML}{27AE60}    % Verde positivo
+
+% ── Tema base ──────────────────────────────────────────────
+\usetheme{default}
+\useinnertheme{circles}
+
+% ── Colores globales ───────────────────────────────────────
+\setbeamercolor{palette primary}   {bg=PUCblue,  fg=PUCwhite}
+\setbeamercolor{palette secondary} {bg=PUCblue,  fg=PUCgold}
+\setbeamercolor{palette tertiary}  {bg=PUCgold,  fg=PUCblue}
+\setbeamercolor{palette quaternary}{bg=PUCwhite, fg=PUCblue}
+\setbeamercolor{structure}{fg=PUCblue}
+
+\setbeamercolor{frametitle}{bg=PUCblue, fg=PUCwhite}
+\setbeamercolor{framesubtitle}{fg=PUCgold}
+\setbeamercolor{title}{fg=PUCwhite}
+\setbeamercolor{subtitle}{fg=PUCgold}
+\setbeamercolor{author}{fg=PUCwhite}
+\setbeamercolor{date}{fg=PUCgold}
+\setbeamercolor{institute}{fg=PUCwhite}
+
+\setbeamercolor{block title}{bg=PUCblue,  fg=PUCwhite}
+\setbeamercolor{block body} {bg=PUClight, fg=PUCgray}
+\setbeamercolor{block title alerted}{bg=PUCred, fg=PUCwhite}
+\setbeamercolor{block body alerted} {bg=PUClight,fg=PUCgray}
+\setbeamercolor{block title example}{bg=PUCgreen,fg=PUCwhite}
+\setbeamercolor{block body example} {bg=PUClight,fg=PUCgray}
+
+\setbeamercolor{itemize item}   {fg=PUCgold}
+\setbeamercolor{itemize subitem}{fg=PUCmid}
+\setbeamercolor{itemize subsubitem}{fg=PUCblue}
+\setbeamercolor{enumerate item} {fg=PUCgold}
+\setbeamercolor{enumerate subitem}{fg=PUCmid}
+
+\setbeamercolor{footline}{bg=PUCblue!90, fg=PUCwhite}
+\setbeamercolor{headline}{bg=PUCblue,    fg=PUCwhite}
+\setbeamercolor{separation line}{fg=PUCgold}
+
+% ── Fuentes ────────────────────────────────────────────────
+\setbeamerfont{frametitle}{size=\large, series=\bfseries}
+\setbeamerfont{title}    {size=\Large,  series=\bfseries}
+\setbeamerfont{subtitle} {size=\normalsize}
+\setbeamerfont{block title}{size=\normalsize, series=\bfseries}
+\setbeamerfont{footline}   {size=\tiny}
+
+% ── Plantilla frametitle con barra dorada ──────────────────
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth, ht=2.4em, dp=0.8em, leftskip=1em]{frametitle}
+    \usebeamerfont{frametitle}\insertframetitle\strut
+    \ifx\insertframesubtitle\empty\else
+      \par\vspace{0.15em}
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}%
+       \insertframesubtitle}
+    \fi
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=\paperwidth, ht=0.25em]{palette secondary}
+  \end{beamercolorbox}%
+}
+
+% ── Footline ───────────────────────────────────────────────
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}[wd=\paperwidth, ht=1.6em, dp=0.5em]{footline}%
+    \hspace{1em}%
+    \includegraphics[height=1em]{../Latex/logo-mat-02.png}\hfill
+    \insertshortauthor\hfill
+    \insertshorttitle\hfill
+    \insertframenumber\,/\,\inserttotalframenumber\hspace{1em}
+  \end{beamercolorbox}%
+}
+
+% ── Sin botones de navegación ──────────────────────────────
+\setbeamertemplate{navigation symbols}{}
+
+% ── Bullet items personalizados ────────────────────────────
+\setbeamertemplate{itemize item}   {\color{PUCgold}\rule[0.15ex]{0.6ex}{0.6ex}}
+\setbeamertemplate{itemize subitem}{\color{PUCmid}\small$\triangleright$}
+
+% ── Portada personalizada ──────────────────────────────────
+\setbeamertemplate{title page}{%
+  \begin{tikzpicture}[remember picture, overlay]
+    % Fondo azul completo
+    \fill[PUCblue] (current page.south west) rectangle (current page.north east);
+    % Banda dorada inferior
+    \fill[PUCgold] (current page.south west) rectangle
+                   ([yshift=0.08\paperheight]current page.south east);
+    % Banda dorada superior (delgada)
+    \fill[PUCgold] ([yshift=-0.005\paperheight]current page.north west) rectangle
+                   ([yshift=-0.03\paperheight]current page.north east);
+    % Bloque semitransparente para texto
+    \fill[PUCblue!80!black, opacity=0.6, rounded corners=4pt]
+      ([xshift=0.35\paperwidth, yshift=-0.15\paperheight]current page.north west) rectangle
+      ([xshift=-0.04\paperwidth,yshift= 0.12\paperheight]current page.south east);
+  \end{tikzpicture}%
+  \vspace{0.5em}
+  \begin{columns}[c]
+    \begin{column}{0.25\textwidth}
+      \centering
+      \includegraphics[width=0.85\textwidth]{../Latex/logo-mat-02.png}
+    \end{column}
+    \begin{column}{0.72\textwidth}
+      \raggedright
+      {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}
+      \vspace{0.5em}
+      {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}
+      \vspace{1em}
+      \begin{beamercolorbox}[wd=\textwidth, rounded=true, sep=0.4em]{block body}
+        \small
+        \textbf{Integrantes:}\\[0.3em]
+        Esteban D. Román Soto\\
+        William E. Mora Estrada
+      \end{beamercolorbox}
+      \vspace{0.5em}
+      {\small\usebeamercolor[fg]{date}\insertinstitute\\[0.3em]\insertdate}
+    \end{column}
+  \end{columns}
+}
+
+% ── Metadatos ──────────────────────────────────────────────
+\title{Análisis del Artículo:\\Tang et al.\ (2024)}
+\subtitle{\textit{Analysis and Evaluation of Explainable Artificial\\
+          Intelligence on Suicide Risk Assessment}}
+\author[Román \& Mora]{Esteban D. Román Soto \and William E. Mora Estrada}
+\institute{EYP3507: Bioestadística\\
+           Facultad de Matemáticas\\
+           Pontificia Universidad Católica de Chile}
+\date{\today}
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+% ── 1. PORTADA ─────────────────────────────────────────────
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ── 2. ÍNDICE ──────────────────────────────────────────────
+\begin{frame}{Contenido}
+  \tableofcontents[sectionstyle=show, subsectionstyle=show/shaded/hide]
+\end{frame}
+
+% ============================================================
+\section{Contexto del Artículo}
+% ============================================================
+
+\begin{frame}{El artículo analizado}
+  \framesubtitle{Tang et al.\ (2024) — \textit{Scientific Reports}}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      \textbf{\color{PUCgold}Motivación}
+      \begin{itemize}
+        \item Las escalas tradicionales de evaluación del riesgo presentan \textbf{bajo valor predictivo positivo}.
+        \item El juicio clínico resulta insuficiente para estratificar con precisión a los pacientes.
+        \item Propuesta: combinar \textbf{ML} con un marco de \textbf{explicabilidad (XAI)}.
+      \end{itemize}
+      \vspace{0.8em}
+      \textbf{\color{PUCgold}Datos}
+      \begin{itemize}
+        \item Colombo South Teaching Hospital (Sri Lanka).
+        \item 1\,000 registros balanceados (500 casos / 500 controles).
+        \item 19 variables predictoras numéricas y categóricas.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{Modelos aplicados}
+        \small
+        \begin{itemize}
+          \item Regresión Logística
+          \item Árbol de Decisión
+          \item \textbf{Random Forest} {\color{PUCgold}$\star$}
+          \item SVM
+          \item Perceptrón
+          \item XGBoost
+        \end{itemize}
+      \end{block}
+      \begin{alertblock}{Mejor resultado}
+        \centering
+        \textbf{AUC = 97,05\,\%}\\
+        \small Random Forest + SMOTENC
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Metodología del estudio}
+  \framesubtitle{Flujo de trabajo de Tang et al.\ (2024)}
+  \begin{center}
+  \begin{tikzpicture}[
+      box/.style={rectangle, rounded corners=3pt, draw=PUCblue, fill=PUClight,
+                  text width=2.8cm, align=center, minimum height=1cm, font=\small},
+      arr/.style={->, thick, color=PUCgold},
+      lbl/.style={font=\tiny, color=PUCgray}
+    ]
+    \node[box] (datos)  at (0,0)    {Datos\\clínicos\\(1\,000 reg.)};
+    \node[box] (aug)    at (3.2,0)  {Aumento\\de datos\\CTGAN / SMOTENC};
+    \node[box] (ml)     at (6.4,0)  {6 modelos\\de\\Machine Learning};
+    \node[box] (eval)   at (9.6,0)  {Evaluación\\AUC, F1\\Precisión};
+    \node[box] (xai)    at (6.4,-2.2){XAI\\(SHAP)\\Importancia};
+    \node[box] (conc)   at (9.6,-2.2){Factores\\de riesgo\\identificados};
+    \draw[arr] (datos) -- (aug);
+    \draw[arr] (aug)   -- (ml);
+    \draw[arr] (ml)    -- (eval);
+    \draw[arr] (ml)    -- (xai);
+    \draw[arr] (xai)   -- (conc);
+    \draw[arr] (eval)  -- (conc);
+  \end{tikzpicture}
+  \end{center}
+  \vspace{0.3em}
+  \begin{block}{Predictores principales (valores SHAP)}
+    \centering
+    \textbf{Ira} \quad $\cdot$ \quad \textbf{Depresión} \quad $\cdot$ \quad \textbf{Aislamiento social}
+  \end{block}
+\end{frame}
+
+% ============================================================
+\section{P1 — IA vs.\ Estadística}
+% ============================================================
+
+\begin{frame}{Pregunta 1}
+  \framesubtitle{¿Qué distingue conceptualmente a la IA de la Estadística en este artículo?}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Estadística}
+        \begin{itemize}
+          \item Inferir asociaciones e \textbf{interpretar} relaciones entre variables.
+          \item Correlación de Spearman, mapas de calor.
+          \item Interpretabilidad \textbf{directa}: cada coeficiente revela dirección y fuerza.
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{IA / Machine Learning}
+        \begin{itemize}
+          \item Priorizar la \textbf{predicción} a partir de datos históricos.
+          \item Random Forest, XGBoost: capturan relaciones no lineales.
+          \item Operan como \textbf{caja negra}: baja interpretabilidad.
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{0.6em}
+  \begin{alertblock}{Marco teórico de referencia}
+    \begin{itemize}
+      \item \textbf{Breiman (2001):} \textit{dos culturas} — modelo de datos vs.\ modelo algorítmico.
+      \item \textbf{Shmueli (2010):} \textit{explanatory modeling} vs.\ \textit{predictive modeling}.
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{XAI como puente entre las dos culturas}
+  \framesubtitle{Pregunta 1 — Conclusión}
+  \begin{center}
+  \begin{tikzpicture}[
+      pill/.style={rectangle, rounded corners=8pt, fill=#1, text width=3.2cm,
+                   align=center, minimum height=1.1cm, font=\small\bfseries},
+      arr/.style={<->, very thick, color=PUCgold}
+    ]
+    \node[pill=PUCblue, text=white] (est) at (0,0) {Estadística\\{\normalfont Interpretar}};
+    \node[pill=PUCblue, text=white] (ia)  at (8,0) {IA / ML\\{\normalfont Predecir}};
+    \node[pill=PUCgold, text=PUCblue] (xai) at (4,0) {XAI\\(SHAP)\\{\normalfont Puente}};
+    \draw[arr] (est) -- (xai);
+    \draw[arr] (xai) -- (ia);
+  \end{tikzpicture}
+  \end{center}
+  \vspace{0.5em}
+  \begin{itemize}
+    \item La distinción es \textbf{funcional}, no esencial: la Regresión Logística es a la vez
+          ML y estadística clásica.
+    \item \textbf{SHAP} (basado en la teoría de juegos cooperativos de Shapley) reintroduce
+          interpretabilidad en el modelo predictivo.
+    \item Tang et al.\ (2024) trata la IA como una \textbf{extensión predictiva} de la
+          Estadística, no como su antítesis.
+  \end{itemize}
+\end{frame}
+
+% ============================================================
+\section{P2 — Predicción vs.\ Explicación}
+% ============================================================
+
+\begin{frame}{Pregunta 2 — Punto de partida}
+  \framesubtitle{¿El artículo distingue entre predicción y explicación?}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{Predecir (RAE, def.\ 1)}
+        «Anunciar por \textbf{conocimiento fundado} algo que ha de suceder.»
+      \end{exampleblock}
+      \vspace{0.5em}
+      \begin{exampleblock}{Explicar — def.\ 2 (expositiva)}
+        «Declarar una materia con palabras claras para hacerla \textbf{más perceptible}.»
+        \vspace{0.3em}
+
+        \textit{Bajo esta definición: predicción $\approx$ explicación}
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{alertblock}{Explicar — def.\ 5 (causal)}
+        «Dar a conocer la \textbf{causa o motivo} de algo.»
+        \vspace{0.3em}
+
+        \textit{Bajo esta definición: predicción $\neq$ explicación}
+      \end{alertblock}
+      \vspace{0.5em}
+      \begin{block}{SHAP explica el \textit{modelo}, no el fenómeno}
+        Atribuye contribuciones a las variables \textbf{dentro del modelo}.
+        No establece mecanismos causales del suicidio.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Predicción $\neq$ Explicación causal}
+  \framesubtitle{Pregunta 2 — Marco de Shmueli (2010) y Pearl (2009)}
+  \begin{itemize}
+    \item \textbf{Shmueli (2010):} el artículo se inscribe en la cultura \textit{predictiva}:
+          su criterio de éxito es el desempeño ($\text{AUC} = 97{,}05\,\%$), no la verificación
+          de una hipótesis causal.
+    \medskip
+    \item \textbf{Pearl (2009):} la correlación no implica causalidad.
+          Sin un diseño que controle confusores, no es posible elevar una
+          asociación predictiva a relación causal.
+  \end{itemize}
+  \vspace{0.5em}
+  \begin{alertblock}{Consecuencia práctica}
+    Que \textbf{ira}, \textbf{depresión} y \textbf{aislamiento social} sean los predictores más
+    importantes (Tang et al., 2024, Fig.\ 6b) \textbf{no equivale a afirmar que los causen}.
+    Podrían ser síntomas, consecuencias o efectos de un confusor común.
+  \end{alertblock}
+  \vspace{0.4em}
+  \begin{block}{Conclusión de la P2}
+    \small
+    Bajo definición expositiva: predicción $\approx$ explicación.
+    Bajo definición causal: \textbf{difieren}. El aporte del artículo es predictivo;
+    la XAI cumple una función interpretativa \textit{sobre el modelo}, no causal \textit{del fenómeno}.
+  \end{block}
+\end{frame}
+
+% ============================================================
+\section{P3 — Validez del patrón}
+% ============================================================
+
+\begin{frame}{Pregunta 3 — Evidencia presentada}
+  \framesubtitle{¿Qué justifica que el patrón corresponde al fenómeno y no a un artefacto?}
+  \small
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Evidencia descriptiva}
+        \begin{itemize}
+          \item \textbf{Conclusión 1:} nube de palabras de los registros\\
+                $\Rightarrow$ asociación con trastornos.
+          \item \textbf{Conclusión 2:} gráfico de barras\\
+                $\Rightarrow$ desempleo = mayor riesgo;\\
+                personal de seguridad = menor riesgo.
+          \item Coincidencia con resultados de otros estudios.
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Evidencia del modelo}
+        \begin{itemize}
+          \item Correlación de Spearman + mapa de calor.
+          \item Random Forest + SHAP\\
+                $\Rightarrow$ ira, depresión, aislamiento social.
+          \item Aumento de datos (CTGAN, SMOTENC)\\
+                $\Rightarrow$ mayor robustez interna.
+          \item Factores protectores: alto nivel educativo.
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{0.4em}
+  \begin{alertblock}{Limitación central}
+    Todo el análisis usa la \textbf{misma base de datos}.
+    El aumento de datos (CTGAN/SMOTENC) sintetiza registros a partir de
+    la distribución original: las atribuciones SHAP describen \textbf{el modelo},
+    no el mecanismo del fenómeno (Breiman, 2001; Shmueli, 2010; Pearl, 2009).
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Pregunta 3 — Conclusión}
+  \framesubtitle{Alcance de la evidencia}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{\faCheckCircle\  Lo que sí respalda la evidencia}
+        \begin{itemize}
+          \item El patrón es \textbf{estable} dentro del conjunto de datos.
+          \item Es \textbf{útil para predecir} en el mismo dominio.
+          \item Coincide con hallazgos previos de la literatura.
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{alertblock}{\faExclamationTriangle\ Lo que queda abierto}
+        \begin{itemize}
+          \item Justificación \textbf{teórico-causal} más allá de los datos.
+          \item Perspectiva \textbf{psicológica/psiquiátrica} ausente.
+          \item Generalización a otros contextos o poblaciones.
+        \end{itemize}
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+  \vspace{0.6em}
+  \begin{block}{El propio artículo reconoce la limitación}
+    \centering
+    \small
+    «Los modelos de predicción deben utilizarse \textbf{en conjunto con el
+    asesoramiento médico}.»\\
+    \textit{(Tang et al., 2024, Clinical Implications and Future Directions)}
+  \end{block}
+\end{frame}
+
+% ============================================================
+\section{Conclusiones}
+% ============================================================
+
+\begin{frame}{Conclusiones generales}
+  \begin{enumerate}
+    \item[\textbf{P1}] IA y Estadística \textbf{no se oponen} en Tang et al.\ (2024):
+          se distinguen por su énfasis (predecir vs.\ interpretar) y la XAI actúa como
+          mecanismo de traducción entre ambas.
+    \vspace{0.5em}
+    \item[\textbf{P2}] La respuesta depende de la definición de ``explicar'':
+          bajo la definición \textit{causal}, predicción y explicación \textbf{difieren}.
+          SHAP explica el modelo, no el fenómeno.
+    \vspace{0.5em}
+    \item[\textbf{P3}] La evidencia justifica que el patrón es \textbf{estable y predictivo}
+          dentro del marco de datos, pero la justificación teórico-causal del fenómeno
+          queda abierta.
+  \end{enumerate}
+  \vspace{0.6em}
+  \begin{block}{Síntesis}
+    \centering
+    \small
+    Los modelos de ML proveen una explicación de los registros obtenidos y, por ello,
+    deben usarse como \textbf{complemento y validación} del juicio médico, no como sustituto.
+  \end{block}
+\end{frame}
+
+% ============================================================
+\section*{Referencias}
+% ============================================================
+
+\begin{frame}[allowframebreaks]{Referencias}
+  \small
+  \begin{enumerate}
+    \item Breiman, L. (2001). Statistical Modeling: The Two Cultures.
+          \textit{Statistical Science}, 16(3), 199--231.
+    \item Shmueli, G. (2010). To Explain or to Predict?
+          \textit{Statistical Science}, 25(3), 289--310.
+    \item Lundberg, S. M., \& Lee, S.-I. (2017). A Unified Approach to Interpreting
+          Model Predictions. \textit{NeurIPS}.
+    \item Pearl, J. (2009). \textit{Causality: Models, Reasoning, and Inference}
+          (2.ª ed.). Cambridge University Press.
+    \item Chawla, N. V., et al.\ (2002). SMOTE: Synthetic Minority Over-sampling
+          Technique. \textit{JAIR}, 16, 321--357.
+    \item Xu, L., et al.\ (2019). Modeling Tabular Data using Conditional GAN.
+          \textit{NeurIPS}.
+    \item Tang, H., et al.\ (2024). Analysis and evaluation of explainable
+          artificial intelligence on suicide risk assessment.
+          \textit{Scientific Reports}, 14, 6163.
+    \item Real Academia Española. (s.f.). \textit{Explicar} / \textit{Predecir}.
+          Diccionario de la lengua española.
+  \end{enumerate}
+\end{frame}
+
+% ── Diapositiva final ──────────────────────────────────────
+\begin{frame}[plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[PUCblue] (current page.south west) rectangle (current page.north east);
+    \fill[PUCgold] (current page.south west) rectangle
+                   ([yshift=0.08\paperheight]current page.south east);
+    \fill[PUCgold] ([yshift=-0.005\paperheight]current page.north west) rectangle
+                   ([yshift=-0.03\paperheight]current page.north east);
+  \end{tikzpicture}
+  \begin{center}
+    \vspace{2em}
+    {\color{PUCwhite}\Large\bfseries Gracias por su atención}\\[1.5em]
+    {\color{PUCgold}\large Preguntas y comentarios}\\[2em]
+    \includegraphics[width=0.22\textwidth]{../Latex/logo-mat-02.png}\\[1em]
+    {\color{PUCwhite}\small EYP3507 Bioestadística ·
+     Pontificia Universidad Católica de Chile}
+  \end{center}
+\end{frame}
+
+\end{document}
