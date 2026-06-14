@@ -2,7 +2,7 @@
 %  Presentación — Tang et al. (2024) | EYP3507 Bioestadística
 %  Paleta oficial Pontificia Universidad Católica de Chile
 % ============================================================
-\documentclass[aspectratio=169,12pt]{beamer}
+\documentclass[aspectratio=169,11pt]{beamer}
 
 % ── Paquetes ───────────────────────────────────────────────
 \usepackage[spanish]{babel}
@@ -14,7 +14,7 @@
 \usepackage{xcolor}
 \usepackage{fontawesome5}
 \usepackage{array}
-\usepackage{microtype}
+% microtype removed (conflicts with Beamer+babel)
 
 % ── Paleta PUC ─────────────────────────────────────────────
 %  Azul institucional, dorado, complementarios
@@ -106,18 +106,17 @@
 % ── Portada personalizada ──────────────────────────────────
 \setbeamertemplate{title page}{%
   \begin{tikzpicture}[remember picture, overlay]
-    % Fondo azul completo
-    \fill[PUCblue] (current page.south west) rectangle (current page.north east);
+    % Fondo blanco
+    \fill[PUCwhite] (current page.south west) rectangle (current page.north east);
+    % Banda azul superior
+    \fill[PUCblue] (current page.north west) rectangle
+                   ([yshift=-0.18\paperheight]current page.north east);
+    % Banda dorada bajo la azul
+    \fill[PUCgold] ([yshift=-0.18\paperheight]current page.north west) rectangle
+                   ([yshift=-0.21\paperheight]current page.north east);
     % Banda dorada inferior
     \fill[PUCgold] (current page.south west) rectangle
-                   ([yshift=0.08\paperheight]current page.south east);
-    % Banda dorada superior (delgada)
-    \fill[PUCgold] ([yshift=-0.005\paperheight]current page.north west) rectangle
-                   ([yshift=-0.03\paperheight]current page.north east);
-    % Bloque semitransparente para texto
-    \fill[PUCblue!80!black, opacity=0.6, rounded corners=4pt]
-      ([xshift=0.35\paperwidth, yshift=-0.15\paperheight]current page.north west) rectangle
-      ([xshift=-0.04\paperwidth,yshift= 0.12\paperheight]current page.south east);
+                   ([yshift=0.04\paperheight]current page.south east);
   \end{tikzpicture}%
   \vspace{0.5em}
   \begin{columns}[c]
@@ -127,9 +126,9 @@
     \end{column}
     \begin{column}{0.72\textwidth}
       \raggedright
-      {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}
+      {\usebeamerfont{title}\color{PUCblue}\inserttitle\par}
       \vspace{0.5em}
-      {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}
+      {\usebeamerfont{subtitle}\color{PUCgold}\insertsubtitle\par}
       \vspace{1em}
       \begin{beamercolorbox}[wd=\textwidth, rounded=true, sep=0.4em]{block body}
         \small
@@ -138,7 +137,7 @@
         William E. Mora Estrada
       \end{beamercolorbox}
       \vspace{0.5em}
-      {\small\usebeamercolor[fg]{date}\insertinstitute\\[0.3em]\insertdate}
+      {\small\color{PUCgray}\insertinstitute\\[0.3em]\insertdate}
     \end{column}
   \end{columns}
 }
@@ -152,6 +151,13 @@
            Facultad de Matemáticas\\
            Pontificia Universidad Católica de Chile}
 \date{\today}
+
+% ── Estilos TikZ globales ───────────────────────────────────────
+\tikzset{
+  pill/.style={rectangle, rounded corners=8pt, fill=#1, text width=3.2cm,
+               align=center, minimum height=1.1cm, font=\small\bfseries},
+  pill/.default=PUCblue
+}
 
 % ============================================================
 \begin{document}
@@ -171,7 +177,7 @@
 \section{Contexto del Artículo}
 % ============================================================
 
-\begin{frame}{El artículo analizado}
+\begin{frame}[shrink=35]{El artículo analizado}
   \framesubtitle{Tang et al.\ (2024) — \textit{Scientific Reports}}
   \begin{columns}[T]
     \begin{column}{0.55\textwidth}
@@ -213,29 +219,29 @@
 \begin{frame}{Metodología del estudio}
   \framesubtitle{Flujo de trabajo de Tang et al.\ (2024)}
   \begin{center}
+  \resizebox{0.98\textwidth}{!}{%
   \begin{tikzpicture}[
       box/.style={rectangle, rounded corners=3pt, draw=PUCblue, fill=PUClight,
-                  text width=2.8cm, align=center, minimum height=1cm, font=\small},
-      arr/.style={->, thick, color=PUCgold},
-      lbl/.style={font=\tiny, color=PUCgray}
-    ]
-    \node[box] (datos)  at (0,0)    {Datos\\clínicos\\(1\,000 reg.)};
-    \node[box] (aug)    at (3.2,0)  {Aumento\\de datos\\CTGAN / SMOTENC};
-    \node[box] (ml)     at (6.4,0)  {6 modelos\\de\\Machine Learning};
-    \node[box] (eval)   at (9.6,0)  {Evaluación\\AUC, F1\\Precisión};
-    \node[box] (xai)    at (6.4,-2.2){XAI\\(SHAP)\\Importancia};
-    \node[box] (conc)   at (9.6,-2.2){Factores\\de riesgo\\identificados};
+                  text width=2.4cm, align=center, minimum height=0.9cm, font=\small},
+      boxr/.style={rectangle, rounded corners=3pt, draw=PUCgold, fill=PUCgold!20,
+                  text width=2.4cm, align=center, minimum height=0.9cm, font=\small\bfseries},
+      arr/.style={->, thick, color=PUCgold}]
+    \node[box]  (datos) at (0,0)    {Datos\\clínicos\\(1\,000 reg.)};
+    \node[box]  (aug)   at (3.0,0)  {Aumento\\CTGAN /\\SMOTENC};
+    \node[box]  (ml)    at (6.0,0)  {6 modelos\\ML};
+    \node[boxr] (rf)    at (9.0,0)  {Random\\Forest\\$\star$};
+    \node[box]  (shap)  at (12.0,0) {XAI\\(SHAP)};
+    \node[boxr] (out)   at (15.0,0) {AUC\\97{,}05\,\%};
     \draw[arr] (datos) -- (aug);
     \draw[arr] (aug)   -- (ml);
-    \draw[arr] (ml)    -- (eval);
-    \draw[arr] (ml)    -- (xai);
-    \draw[arr] (xai)   -- (conc);
-    \draw[arr] (eval)  -- (conc);
-  \end{tikzpicture}
+    \draw[arr] (ml)    -- (rf);
+    \draw[arr] (rf)    -- (shap);
+    \draw[arr] (shap)  -- (out);
+  \end{tikzpicture}}%
   \end{center}
-  \vspace{0.3em}
+  \vspace{0.4em}
   \begin{block}{Predictores principales (valores SHAP)}
-    \centering
+    \centering\small
     \textbf{Ira} \quad $\cdot$ \quad \textbf{Depresión} \quad $\cdot$ \quad \textbf{Aislamiento social}
   \end{block}
 \end{frame}
@@ -278,9 +284,8 @@
 \begin{frame}{XAI como puente entre las dos culturas}
   \framesubtitle{Pregunta 1 — Conclusión}
   \begin{center}
+  \resizebox{0.85\textwidth}{!}{%
   \begin{tikzpicture}[
-      pill/.style={rectangle, rounded corners=8pt, fill=#1, text width=3.2cm,
-                   align=center, minimum height=1.1cm, font=\small\bfseries},
       arr/.style={<->, very thick, color=PUCgold}
     ]
     \node[pill=PUCblue, text=white] (est) at (0,0) {Estadística\\{\normalfont Interpretar}};
@@ -288,16 +293,13 @@
     \node[pill=PUCgold, text=PUCblue] (xai) at (4,0) {XAI\\(SHAP)\\{\normalfont Puente}};
     \draw[arr] (est) -- (xai);
     \draw[arr] (xai) -- (ia);
-  \end{tikzpicture}
+  \end{tikzpicture}}%
   \end{center}
-  \vspace{0.5em}
+  \vspace{0.4em}
   \begin{itemize}
-    \item La distinción es \textbf{funcional}, no esencial: la Regresión Logística es a la vez
-          ML y estadística clásica.
-    \item \textbf{SHAP} (basado en la teoría de juegos cooperativos de Shapley) reintroduce
-          interpretabilidad en el modelo predictivo.
-    \item Tang et al.\ (2024) trata la IA como una \textbf{extensión predictiva} de la
-          Estadística, no como su antítesis.
+    \item La distinción es \textbf{funcional}, no esencial: la Regresión Logística es a la vez ML y estadística clásica.
+    \item \textbf{SHAP} (basado en la teoría de Shapley) reintroduce interpretabilidad en el modelo predictivo.
+    \item Tang et al.\ (2024) trata la IA como una \textbf{extensión predictiva} de la Estadística, no como su antítesis.
   \end{itemize}
 \end{frame}
 
@@ -312,25 +314,21 @@
       \begin{exampleblock}{Predecir (RAE, def.\ 1)}
         «Anunciar por \textbf{conocimiento fundado} algo que ha de suceder.»
       \end{exampleblock}
-      \vspace{0.5em}
+      \vspace{0.4em}
       \begin{exampleblock}{Explicar — def.\ 2 (expositiva)}
-        «Declarar una materia con palabras claras para hacerla \textbf{más perceptible}.»
-        \vspace{0.3em}
-
-        \textit{Bajo esta definición: predicción $\approx$ explicación}
+        «Declarar una materia con palabras claras para hacerla \textbf{más perceptible}.»\par
+        \smallskip\textit{predicción $\approx$ explicación}
       \end{exampleblock}
     \end{column}
     \begin{column}{0.48\textwidth}
       \begin{alertblock}{Explicar — def.\ 5 (causal)}
-        «Dar a conocer la \textbf{causa o motivo} de algo.»
-        \vspace{0.3em}
-
-        \textit{Bajo esta definición: predicción $\neq$ explicación}
+        «Dar a conocer la \textbf{causa o motivo} de algo.»\par
+        \smallskip\textit{predicción $\neq$ explicación}
       \end{alertblock}
-      \vspace{0.5em}
+      \vspace{0.4em}
       \begin{block}{SHAP explica el \textit{modelo}, no el fenómeno}
         Atribuye contribuciones a las variables \textbf{dentro del modelo}.
-        No establece mecanismos causales del suicidio.
+        No establece mecanismos causales.
       \end{block}
     \end{column}
   \end{columns}
@@ -340,25 +338,22 @@
   \framesubtitle{Pregunta 2 — Marco de Shmueli (2010) y Pearl (2009)}
   \begin{itemize}
     \item \textbf{Shmueli (2010):} el artículo se inscribe en la cultura \textit{predictiva}:
-          su criterio de éxito es el desempeño ($\text{AUC} = 97{,}05\,\%$), no la verificación
-          de una hipótesis causal.
-    \medskip
+          su criterio de éxito es el desempeño ($\text{AUC} = 97{,}05\,\%$), no la
+          verificación de una hipótesis causal.
     \item \textbf{Pearl (2009):} la correlación no implica causalidad.
           Sin un diseño que controle confusores, no es posible elevar una
           asociación predictiva a relación causal.
   \end{itemize}
-  \vspace{0.5em}
+  \vspace{0.3em}
   \begin{alertblock}{Consecuencia práctica}
-    Que \textbf{ira}, \textbf{depresión} y \textbf{aislamiento social} sean los predictores más
-    importantes (Tang et al., 2024, Fig.\ 6b) \textbf{no equivale a afirmar que los causen}.
+    Que \textbf{ira}, \textbf{depresión} y \textbf{aislamiento social} sean los predictores
+    más importantes \textbf{no equivale a afirmar que los causen}.
     Podrían ser síntomas, consecuencias o efectos de un confusor común.
   \end{alertblock}
-  \vspace{0.4em}
+  \vspace{0.2em}
   \begin{block}{Conclusión de la P2}
-    \small
     Bajo definición expositiva: predicción $\approx$ explicación.
-    Bajo definición causal: \textbf{difieren}. El aporte del artículo es predictivo;
-    la XAI cumple una función interpretativa \textit{sobre el modelo}, no causal \textit{del fenómeno}.
+    Bajo definición causal: \textbf{difieren}. La XAI interpreta \textit{el modelo}, no el fenómeno.
   \end{block}
 \end{frame}
 
@@ -368,39 +363,35 @@
 
 \begin{frame}{Pregunta 3 — Evidencia presentada}
   \framesubtitle{¿Qué justifica que el patrón corresponde al fenómeno y no a un artefacto?}
-  \small
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{block}{Evidencia descriptiva}
+        \small
         \begin{itemize}
-          \item \textbf{Conclusión 1:} nube de palabras de los registros\\
-                $\Rightarrow$ asociación con trastornos.
-          \item \textbf{Conclusión 2:} gráfico de barras\\
-                $\Rightarrow$ desempleo = mayor riesgo;\\
-                personal de seguridad = menor riesgo.
-          \item Coincidencia con resultados de otros estudios.
+          \item \textbf{Conclusión 1:} nube de palabras $\Rightarrow$ asociación con trastornos.
+          \item \textbf{Conclusión 2:} gráfico de barras $\Rightarrow$ desempleo = mayor riesgo.
+          \item Coincide con otros estudios de la literatura.
         \end{itemize}
       \end{block}
     \end{column}
     \begin{column}{0.48\textwidth}
       \begin{block}{Evidencia del modelo}
+        \small
         \begin{itemize}
           \item Correlación de Spearman + mapa de calor.
-          \item Random Forest + SHAP\\
-                $\Rightarrow$ ira, depresión, aislamiento social.
-          \item Aumento de datos (CTGAN, SMOTENC)\\
-                $\Rightarrow$ mayor robustez interna.
-          \item Factores protectores: alto nivel educativo.
+          \item Random Forest + SHAP $\Rightarrow$ ira, depresión, aislamiento.
+          \item CTGAN/SMOTENC $\Rightarrow$ mayor robustez.
+          \item Factor protector: alto nivel educativo.
         \end{itemize}
       \end{block}
     \end{column}
   \end{columns}
-  \vspace{0.4em}
+  \vspace{0em}
   \begin{alertblock}{Limitación central}
-    Todo el análisis usa la \textbf{misma base de datos}.
-    El aumento de datos (CTGAN/SMOTENC) sintetiza registros a partir de
-    la distribución original: las atribuciones SHAP describen \textbf{el modelo},
-    no el mecanismo del fenómeno (Breiman, 2001; Shmueli, 2010; Pearl, 2009).
+    \small
+    Todo el análisis usa la \textbf{misma base de datos}. El aumento de datos
+    sintetiza registros de la distribución original: las atribuciones SHAP
+    describen \textbf{el modelo}, no el mecanismo del fenómeno.
   \end{alertblock}
 \end{frame}
 
@@ -409,6 +400,7 @@
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{exampleblock}{\faCheckCircle\  Lo que sí respalda la evidencia}
+        \small
         \begin{itemize}
           \item El patrón es \textbf{estable} dentro del conjunto de datos.
           \item Es \textbf{útil para predecir} en el mismo dominio.
@@ -418,18 +410,18 @@
     \end{column}
     \begin{column}{0.48\textwidth}
       \begin{alertblock}{\faExclamationTriangle\ Lo que queda abierto}
+        \small
         \begin{itemize}
           \item Justificación \textbf{teórico-causal} más allá de los datos.
           \item Perspectiva \textbf{psicológica/psiquiátrica} ausente.
-          \item Generalización a otros contextos o poblaciones.
+          \item Generalización a otros contextos.
         \end{itemize}
       \end{alertblock}
     \end{column}
   \end{columns}
-  \vspace{0.6em}
+  \vspace{0.2em}
   \begin{block}{El propio artículo reconoce la limitación}
-    \centering
-    \small
+    \centering\small
     «Los modelos de predicción deben utilizarse \textbf{en conjunto con el
     asesoramiento médico}.»\\
     \textit{(Tang et al., 2024, Clinical Implications and Future Directions)}
@@ -445,21 +437,19 @@
     \item[\textbf{P1}] IA y Estadística \textbf{no se oponen} en Tang et al.\ (2024):
           se distinguen por su énfasis (predecir vs.\ interpretar) y la XAI actúa como
           mecanismo de traducción entre ambas.
-    \vspace{0.5em}
+    \vspace{0.4em}
     \item[\textbf{P2}] La respuesta depende de la definición de ``explicar'':
           bajo la definición \textit{causal}, predicción y explicación \textbf{difieren}.
           SHAP explica el modelo, no el fenómeno.
-    \vspace{0.5em}
+    \vspace{0.4em}
     \item[\textbf{P3}] La evidencia justifica que el patrón es \textbf{estable y predictivo}
-          dentro del marco de datos, pero la justificación teórico-causal del fenómeno
-          queda abierta.
+          dentro del marco de datos, pero la justificación teórico-causal queda abierta.
   \end{enumerate}
-  \vspace{0.6em}
+  \vspace{0.5em}
   \begin{block}{Síntesis}
     \centering
-    \small
-    Los modelos de ML proveen una explicación de los registros obtenidos y, por ello,
-    deben usarse como \textbf{complemento y validación} del juicio médico, no como sustituto.
+    Los modelos de ML deben usarse como \textbf{complemento y validación}
+    del juicio médico, no como sustituto.
   \end{block}
 \end{frame}
 
@@ -493,18 +483,24 @@
 % ── Diapositiva final ──────────────────────────────────────
 \begin{frame}[plain]
   \begin{tikzpicture}[remember picture, overlay]
-    \fill[PUCblue] (current page.south west) rectangle (current page.north east);
+    % Fondo blanco
+    \fill[PUCwhite] (current page.south west) rectangle (current page.north east);
+    % Banda azul superior
+    \fill[PUCblue] (current page.north west) rectangle
+                   ([yshift=-0.18\paperheight]current page.north east);
+    % Banda dorada bajo la azul
+    \fill[PUCgold] ([yshift=-0.18\paperheight]current page.north west) rectangle
+                   ([yshift=-0.21\paperheight]current page.north east);
+    % Banda dorada inferior
     \fill[PUCgold] (current page.south west) rectangle
-                   ([yshift=0.08\paperheight]current page.south east);
-    \fill[PUCgold] ([yshift=-0.005\paperheight]current page.north west) rectangle
-                   ([yshift=-0.03\paperheight]current page.north east);
+                   ([yshift=0.04\paperheight]current page.south east);
   \end{tikzpicture}
   \begin{center}
-    \vspace{2em}
-    {\color{PUCwhite}\Large\bfseries Gracias por su atención}\\[1.5em]
-    {\color{PUCgold}\large Preguntas y comentarios}\\[2em]
+    \vspace{2.5em}
+    {\color{PUCblue}\Large\bfseries Gracias por su atención}\\[1.2em]
+    {\color{PUCgold}\large Preguntas y comentarios}\\[1.5em]
     \includegraphics[width=0.22\textwidth]{../Latex/logo-mat-02.png}\\[1em]
-    {\color{PUCwhite}\small EYP3507 Bioestadística ·
+    {\color{PUCgray}\small EYP3507 Bioestadística $\cdot$
      Pontificia Universidad Católica de Chile}
   \end{center}
 \end{frame}
