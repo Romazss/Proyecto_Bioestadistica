@@ -105,6 +105,7 @@ Bajo este marco, el artículo se inscribe claramente en la cultura predictiva. S
 La distinción es relevante porque las atribuciones SHAP son asociativas y dependen del modelo y de los datos que lo entrenan. Como advierte Pearl (2009), la correlación no implica causalidad: sin un diseño que controle confusores o intervenga sobre las variables, no es posible elevar una asociación predictiva a relación causal. Por ello, que la ira, la depresión y el aislamiento social sean predictores importantes (Tang et al., 2024, Fig. 6b) no equivale a afirmar que los causen; podrían ser síntomas, consecuencias o efectos de un confusor común.
 
 En conclusión, el artículo no asume que predicción y explicación sean equivalentes, pero tampoco delimita sus alcances. Su aporte es predictivo y la XAI cumple una función interpretativa sobre el modelo; la explicación causal del fenómeno, en el sentido de Shmueli (2010) y Pearl (2009), queda fuera de su diseño. La equivalencia aparente entre ambos términos se disuelve al reconocer que SHAP explica una función, no un mecanismo.
+
 \clearpage
 
 % ============================================================
@@ -119,19 +120,19 @@ Para responder esta pregunta, se evaluarán todas las conclusiones obtenidas rel
 
 \medskip
 
-\noindent \textbf{Primera conclusión:} \textit{Quienes fallecen por suicidio tienden a ser personas con trastornos o enfermedades.} Esta conclusión se obtiene mediante una nube de palabras formada con la base de datos; no se entrega otro tipo de información que justifique dicha inferencia.
+\noindent \textbf{La primera conclusión:} \textit{Quienes fallecen por suicidio tienden a ser personas con trastornos o enfermedades} (Tang et al., 2024, Fig.~1). Esta conclusión se obtiene mediante una nube de palabras formada con la base de datos obtenida; no se entrega otro tipo de información para justificar dicha inferencia.
 
 \medskip
 
-\noindent \textbf{Segunda conclusión:} \textit{Las personas con altos ingresos y una ocupación respetable presentan menores tasas de suicidio.} Se llegó a esta conclusión a través de un gráfico de barras elaborado con la base de datos, el cual mostraba que las personas desempleadas tienen el mayor riesgo de suicidio, mientras que el personal de seguridad y los policías presentan el menor riesgo. También se menciona que la conclusión obtenida coincide con los resultados de otros estudios, aunque no se profundiza en los motivos de la existencia del patrón encontrado; solo se señala que este existe.
+\noindent \textbf{La segunda conclusión:} \textit{Las personas con altos ingresos y una ocupación respetable presentan menores tasas de suicidio} (Tang et al., 2024). Se llegó a esta conclusión a través de un gráfico de barras elaborado con la base de datos, el cual mostraba que las personas desempleadas tienen el mayor riesgo de suicidio, mientras que el personal de seguridad y los policías presentan el menor riesgo. También se menciona que la conclusión obtenida coincide con los resultados de otros estudios, aunque no se profundiza en los motivos de la existencia del patrón encontrado; solo se señala que este existe.
 
 \medskip
 
-\noindent Posteriormente, mediante modelos de predicción, la matriz de correlación y el cálculo de los valores \textit{SHAP}, se obtiene que factores como tener problemas de ira o depresión pueden aumentar el riesgo de suicidio de los individuos. Por otro lado, factores como un alto nivel educativo disminuyen dicho riesgo. Los resultados obtenidos coinciden con las conclusiones anteriores, con la diferencia de que fueron alcanzados mediante métodos más complejos. Sin embargo, a pesar de ofrecer mayor evidencia a través de los valores \textit{SHAP}, estos se calculan utilizando la misma base de datos, por lo que continúa el patrón de basar las conclusiones únicamente en ella.
+\noindent Posteriormente, mediante modelos de predicción, la matriz de correlación y el cálculo de los valores \textit{SHAP}, se obtiene que factores como tener problemas de ira o depresión pueden aumentar el riesgo de suicidio de los individuos (Tang et al., 2024, Fig.~6b). Por otro lado, factores como un alto nivel educativo disminuyen dicho riesgo (Tang et al., 2024, Fig.~7). Los resultados obtenidos coinciden con las conclusiones anteriores, con la diferencia de que fueron alcanzados mediante métodos más complejos. Sin embargo, a pesar de ofrecer mayor evidencia a través de los valores \textit{SHAP}, estos se calculan utilizando la misma base de datos, por lo que continúa el patrón de basar las conclusiones únicamente en ella.
 
 \medskip
 
-\noindent \textbf{Limitaciones y observaciones:} El análisis se limita a observar los registros y explicarlos mediante distintos modelos predictivos, sin ampliar su perspectiva. Ninguno de los apartados que presenta estas conclusiones las justifica desde un punto de vista psicológico o psiquiátrico, el cual podría complementar los resultados y mejorar la aplicación de estos modelos en el área médica. \textbf{Es importante mencionar}, por ello, que el artículo reconoce esta limitación y concluye que los modelos de predicción deberían ser utilizados en conjunto con el asesoramiento médico.
+\noindent El análisis se limita a observar los registros y explicarlos mediante distintos modelos predictivos, sin ampliar su perspectiva. Ninguno de los apartados que presenta estas conclusiones las justifica desde un punto de vista psicológico o psiquiátrico, el cual podría complementar los resultados y mejorar la aplicación de estos modelos, dado que serían utilizados en el área médica. Es importante mencionar por ello, que el artículo se muestra consciente de esta limitación, y concluye que los modelos de predicción deberían ser utilizados en conjunto con el asesoramiento médico (Tang et al., 2024, Clinical Implications and Future Directions).
 
 \clearpage
 
