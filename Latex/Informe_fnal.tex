@@ -61,47 +61,23 @@ Concluimos que el artículo trata la XAI como un puente entre la capacidad predi
 
 \medskip
 
-<<<<<<< Updated upstream
 % 1. Apertura: eje de comparación (predicción vs. inferencia)
 El artículo no presenta la Inteligencia Artificial (IA) y la Estadística como disciplinas opuestas, sino que las distingue por su finalidad. La Estadística busca inferir asociaciones e interpretar las relaciones entre variables, mientras que la IA, a través del aprendizaje automático (ML), prioriza la predicción de un resultado a partir de datos históricos.
-=======
-\noindent  El artículo no presenta la Inteligencia Artificial (IA) y la Estadística como disciplinas opuestas, sino que las distingue por su finalidad. La Estadística busca inferir asociaciones e interpretar las relaciones entre variables, mientras que la IA, a través del aprendizaje automático (ML), prioriza la predicción de un resultado a partir de datos históricos.
->>>>>>> Stashed changes
 
 % 2. Estadística: correlación de Spearman, ranking, interpretabilidad
 En el estudio, la Estadística se materializa en el análisis de correlación de Spearman y en el mapa de calor, herramientas orientadas a cuantificar y ordenar la asociación entre variables; por ejemplo, la fuerte correlación entre el suicidio y los problemas de ira, el aislamiento social o la depresión (Tang et al., 2024, Fig.~3). Su valor reside en la interpretabilidad directa: cada coeficiente revela la dirección y la fuerza de una relación sin requerir explicaciones adicionales.
 
-<<<<<<< Updated upstream
 % 3. IA/ML: RF/XGBoost, métricas predictivas, no linealidad, "black box"
 La IA, en cambio, se expresa en modelos como Random Forest y XGBoost, evaluados por su desempeño predictivo (AUC = 97,05\,\%, F1 y precisión; Tang et al., 2024, Tabla~1). Estos modelos capturan relaciones complejas y no lineales que las técnicas clásicas no logran modelar (el artículo advierte que los métodos matemáticos tradicionales producen resultados menos precisos ante la complejidad del comportamiento humano), pero operan como cajas negras de baja interpretabilidad.
-=======
-\noindent  En el estudio, la Estadística se materializa en el análisis de correlación de Spearman y en el mapa de calor, herramientas orientadas a cuantificar y ordenar la asociación entre variables; por ejemplo, la fuerte correlación entre el suicidio y los problemas de ira, el aislamiento social o la depresión (Tang et al., 2024, Fig.~3). Su valor reside en la interpretabilidad directa: cada coeficiente revela la dirección y la fuerza de una relación sin requerir explicaciones adicionales.
->>>>>>> Stashed changes
 
 % 4. Marco teórico: dos culturas (Breiman) y distinción explanatory/predictive (Shmueli)
 Esta tensión no es exclusiva del artículo. Breiman (2001) describió «dos culturas» del modelamiento: la del \textit{modelo de datos} estadística clásica, orientada a inferir la relación entre variables y la del \textit{modelo algorítmico} ML, orientado a predecir con precisión. Shmueli (2010) formalizó esta diferencia entre \textit{explanatory modeling} y \textit{predictive modeling}. El artículo de Tang et al.\ (2024) opera en la segunda cultura y emplea SHAP (Lundberg \& Lee, 2017), fundamentado en los valores de Shapley de la teoría de juegos cooperativos, para reintroducir interpretabilidad.
 
-<<<<<<< Updated upstream
 % 5. Puente XAI: SHAP devuelve interpretabilidad al modelo predictivo
 El puente entre ambos enfoques es, precisamente, la IA Explicable (XAI). Mediante SHAP, el artículo reintroduce la interpretabilidad en los modelos predictivos, asignando a cada variable una contribución positiva o negativa a la predicción individual. Así, la capacidad predictiva de la IA converge con la vocación explicativa de la Estadística.
 
 % 5. Cierre crítico: distinción funcional, no tajante; solapamiento
 La distinción es, por tanto, funcional más que tajante. Varios de los ``modelos de ML'' empleados (regresión logística, Lasso y Ridge) son métodos estadísticos clásicos, y el propio SHAP se funda en la teoría de juegos cooperativos. El artículo trata la IA como una extensión predictiva de la Estadística, no como su antítesis.
-=======
-\noindent  La IA, en cambio, se expresa en modelos como Random Forest y XGBoost, evaluados por su desempeño predictivo (AUC = 97,05\,\%, F1 y precisión; Tang et al., 2024, Tabla~1). Estos modelos capturan relaciones complejas y no lineales que las técnicas clásicas no logran modelar (el artículo advierte que los métodos matemáticos tradicionales producen resultados menos precisos ante la complejidad del comportamiento humano), pero operan como cajas negras de baja interpretabilidad.
-
-\vspace{0.15cm}
-
-\noindent  Esta tensión no es exclusiva del artículo. Breiman (2001) describió «dos culturas» del modelamiento: la del \textit{modelo de datos} estadística clásica, orientada a inferir la relación entre variables y la del \textit{modelo algorítmico} ML, orientado a predecir con precisión. Shmueli (2010) formalizó esta diferencia entre \textit{explanatory modeling} y \textit{predictive modeling}. El artículo de Tang et al.\ (2024) opera en la segunda cultura y emplea SHAP (Lundberg \& Lee, 2017), fundamentado en los valores de Shapley de la teoría de juegos cooperativos, para reintroducir interpretabilidad.
-
-\vspace{0.15cm}
-
-\noindent  Mediante SHAP, el artículo reintroduce la interpretabilidad en los modelos predictivos, asignando a cada variable una contribución positiva o negativa a la predicción individual. Así, la capacidad predictiva de la IA converge con la vocación explicativa de la Estadística.
-
-\vspace{0.15cm}
-
-\noindent  La distinción es, por tanto, funcional más que tajante. Varios de los ``modelos de ML'' empleados (regresión logística, Lasso y Ridge) son métodos estadísticos clásicos, y el propio SHAP se funda en la teoría de juegos cooperativos. El artículo trata la IA como una extensión predictiva de la Estadística, no como su antítesis.
->>>>>>> Stashed changes
 
 \clearpage
 
@@ -112,55 +88,45 @@ La distinción es, por tanto, funcional más que tajante. Varios de los ``modelo
 
 \medskip
 
-Para responder esta pregunta primero hay que determinar qué definiciones hay de \textit{explicar} y \textit{predecir}, y qué definición se utilizará para responder esta pregunta.
+Para responder esta pregunta primero hay que determinar qué definiciones hay de “explicar” y “predecir”, y que definición se utilizará para responder esta pregunta.
 
-\textbf{Predecir} tiene una definición según la RAE: \textit{``Anunciar por revelación, conocimiento fundado, intuición o conjetura algo que ha de suceder.''}
+\textbf{Predecir} tiene una definición según la RAE, y esta es \textit{“Anunciar por revelación, conocimiento fundado, intuición o conjetura algo que ha de suceder.”} (s.f., definición 1)
 
-\textbf{Explicar}, en cambio, tiene varias definiciones según la RAE; se considerarán las que son pertinentes al artículo a comentar: \textit{``Declarar o exponer cualquier materia, doctrina o texto difícil, con palabras muy claras para hacerlos más perceptibles.''} y \textit{``Dar a conocer la causa o motivo de algo.''}
+\textbf{Explicar}, por otra parte, tiene varias definiciones según la RAE, se considerarán las definiciones que pertinentes al artículo a comentar, estas son; \textit{“Declarar o exponer cualquier materia, doctrina o texto difícil, con palabras muy claras para hacerlos más perceptibles.”} (s.f., definición 2)
+\textit{“Dar a conocer la causa o motivo de algo.”} (s.f., definición 5)
 
-Si se considera la primera definición, la respuesta es \textbf{sí}. Aunque el artículo no realiza una comparación explícita de ambos conceptos, funcionalmente los trata como equivalentes. El objetivo del artículo es presentar los modelos de Inteligencia Artificial Explicable como una forma viable de determinar si un paciente es suicida o no; esto indica que el objetivo de la utilización de estos modelos es la predicción. La forma en que estos modelos predicen es condensando la información de la base de datos en los elementos más importantes y presentándolos de forma simplificada. Desde otra perspectiva, estos modelos exponen la información de modo que el receptor la entienda; es decir, los modelos de Inteligencia Artificial explican la información. En pocas palabras, el objetivo de este tipo de modelos es predecir, y la forma en que predicen incorpora la explicación sobre la distribución de los parámetros.
+Si se toma en cuenta la primera definición de explicar, la respuesta es que se considera semejante a predecir. Si bien no realiza una comparación directa de ambos conceptos, funcionalmente los trata como equivalentes. Es importante dejar en claro que el objetivo de los modelos que analizan una base de datos es predecir los eventos futuros (Breiman, 2001, p. 199). La forma en que estos modelos predicen es tomando toda la información de la base de datos y condensarla a los elementos más importantes de ella, presentando de forma simplificada la información total. Esta simplificación puede entenderse como exponer la información de manera que el receptor la entienda, es decir los modelos de Inteligencia Artificial explican la información. En pocas palabras, el objetivo de este tipo de modelos es predecir y la forma en que predice es con la explicación que le da a la distribución de los parámetros, por ello los modelos de Inteligencia Artificial predicen y explican.
 
-En cambio, si se considera la segunda definición, la respuesta es \textbf{no}. Los modelos de Inteligencia Artificial estudian principalmente correlaciones e interacciones entre parámetros. En estadística, la correlación no implica causalidad; por ello, un análisis correlacional no demuestra la causa de que una persona sea suicida. Para establecer causalidad en psicología se requieren diseños y análisis que controlen el azar y las variables confundentes, algo que los modelos del artículo no garantizan. Por tanto, no es suficiente un análisis exclusivamente basado en IA para indicar causalidad, y se necesitarían análisis adicionales para que el artículo explique las variables.
+En cambio, si se considera la segunda definición de explicar, la respuesta es que esta difiere a la definición predecir. La razón es que los modelos de Inteligencia Artificial estudian a través de la correlación y la interacción entre sus parámetros. En la estadística, una idea que considerar es que la correlación no necesariamente implica causalidad, y por ello no necesariamente al analizar la base de datos se está entregando la causa de que una persona sea suicida (Pearl, 2009).  Para determinar causalidad en la psicología es necesario, entre otros requisitos, descartar la posibilidad de que los resultados sean dados por azar y tener plausibilidad psicológica (Gómez-Restrepo et al. 2006). Dado todos los modelos utilizados poseen un margen de error, eso implica que existe cierto nivel de incerteza o azar al hacer las predicciones. Entonces, no es suficiente un análisis desarrollado por la Inteligencia Artificial para indicar causalidad, y en ese caso se necesitaría otro tipo de análisis extra para que el articulo explique las variables. Por ello los modelos utilizados se limitarían a predecir y no a explicar.
 
+En conclusión, a diferencia de predecir el cual por definición se encuentra en los modelos estadísticos (Breiman, 2001), explicar depende de la definición de este para afirmar que los métodos utilizados explican la base de datos.
 \clearpage
 
 % ============================================================
 % PREGUNTA 3
 % ============================================================
-<<<<<<< Updated upstream
+
 \textbf{Pregunta 3:} En muchas aplicaciones de Machine Learning, las relaciones identificadas por los modelos están guiadas principalmente por patrones presentes en los datos y por objetivos predictivos, sin una justificación teórica explícita del fenómeno subyacente. ¿Qué evidencia entrega el artículo para justificar que el patrón identificado corresponde al fenómeno estudiado?
-=======
-\subsection*{Pregunta 3}
-\noindent  En muchas aplicaciones de Machine Learning, las relaciones identificadas por los modelos están guiadas principalmente por patrones presentes en los datos y por objetivos predictivos, sin una justificación teórica explícita del fenómeno subyacente. ¿Qué evidencia entrega el artículo para justificar que el patrón identificado corresponde al fenómeno estudiado?
->>>>>>> Stashed changes
 
 \medskip
 
-Para responder esta pregunta se evaluarán todas las conclusiones obtenidas relacionadas al fenómeno investigado y la base que llevó a cada conclusión:
+Para responder esta pregunta, se evaluarán todas las conclusiones obtenidas relacionadas con el fenómeno investigado y la base que llevó a cada una de ellas.
 
-<<<<<<< Updated upstream
-La primera conclusión es que aquellos que fallecen por suicidio tienden a ser personas con desordenes o enfermedades. La conclusión se obtiene mediante una nube de palabras formada con la base de datos obtenida, no se entrega otro tipo de información para justificar la inferencia.
-=======
-\noindent  La primera conclusión es que aquellos que fallecen por suicidio tienden a ser personas con desordenes o enfermedades. La conclusión se obtiene mediante una nube de palabras formada con la base de datos obtenida; no se entrega otro tipo de información que justifique la inferencia.
->>>>>>> Stashed changes
+\medskip
 
-La segunda conclusión fue que la gente con altos ingresos y una vocación respetable tienen menor tasa de suicidios. Se llegó a esta conclusión a través de un gráfico de barras de la base de datos que mostraba que la gente desempleada tiene el mayor riesgo de suicidio, y el personal de seguridad y policías tienen el menor riesgo. Se menciona también que la conclusión obtenida coincide con el resultado de otros estudios, aunque no profundiza en los motivos de la existencia del patrón encontrado, solo menciona que existe.
+\noindent \textbf{Primera conclusión:} \textit{Quienes fallecen por suicidio tienden a ser personas con trastornos o enfermedades.} Esta conclusión se obtiene mediante una nube de palabras formada con la base de datos; no se entrega otro tipo de información que justifique dicha inferencia.
 
-<<<<<<< Updated upstream
-Posteriormente mediante modelos de predicción, la matriz de correlación y el cálculo de los valores SHAP se obtiene que factores como tener problemas con la ira o depresión, pueden aumentar el riesgo de suicidio de los individuos. Por el otro lado, factores como un alto nivel de educación disminuyen el riesgo de suicidio. Los resultados sacados coinciden con las conclusiones anteriores con la diferencia que fueron obtenidos mediante métodos más complejos. Sin embargo, a pesar de ofrecer mayor evidencia en la forma de los valores SHAP, estos son calculados utilizando la misma base de datos, por lo que el patrón de basar las conclusiones solo en la base de datos continua.
+\medskip
 
-El análisis se limita a observar los registros y explicarlos mediante distintos modelos predictivos sin extender su visión. Ninguno de los apartados que entrega estas conclusiones las justifica mediante el punto de vista psicológico o psiquiátrico, el cual podría complementar los resultados y mejorar la aplicación de estos modelos, dado que estos serían utilizados en el área médica.
-=======
-\noindent La segunda conclusión fue que la gente con altos ingresos y una vocación respetable tienen menor tasa de suicidios. Se llegó a esta conclusión a través de un gráfico de barras de la base de datos que mostraba que la gente desempleada tiene el mayor riesgo de suicidio, y el personal de seguridad y policías tienen el menor riesgo. Se menciona también que la conclusión obtenida coincide con el resultado de otros estudios, aunque no profundiza en los motivos de la existencia del patrón encontrado.
+\noindent \textbf{Segunda conclusión:} \textit{Las personas con altos ingresos y una ocupación respetable presentan menores tasas de suicidio.} Se llegó a esta conclusión a través de un gráfico de barras elaborado con la base de datos, el cual mostraba que las personas desempleadas tienen el mayor riesgo de suicidio, mientras que el personal de seguridad y los policías presentan el menor riesgo. También se menciona que la conclusión obtenida coincide con los resultados de otros estudios, aunque no se profundiza en los motivos de la existencia del patrón encontrado; solo se señala que este existe.
 
-\vspace{0.15cm}
+\medskip
 
-\noindent  Posteriormente, mediante modelos de predicción, la matriz de correlación y el cálculo de los valores SHAP se obtiene que factores como tener problemas con la ira o depresión pueden aumentar el riesgo de suicidio de los individuos. Por otro lado, factores como un alto nivel de educación disminuyen el riesgo. A pesar de ofrecer mayor evidencia en la forma de los valores SHAP, estos se calculan en la misma base de datos, por lo que las conclusiones dependen de esa fuente.
+\noindent Posteriormente, mediante modelos de predicción, la matriz de correlación y el cálculo de los valores \textit{SHAP}, se obtiene que factores como tener problemas de ira o depresión pueden aumentar el riesgo de suicidio de los individuos. Por otro lado, factores como un alto nivel educativo disminuyen dicho riesgo. Los resultados obtenidos coinciden con las conclusiones anteriores, con la diferencia de que fueron alcanzados mediante métodos más complejos. Sin embargo, a pesar de ofrecer mayor evidencia a través de los valores \textit{SHAP}, estos se calculan utilizando la misma base de datos, por lo que continúa el patrón de basar las conclusiones únicamente en ella.
 
-\vspace{0.15cm}
+\medskip
 
-\noindent  El análisis se limita a observar los registros y explicarlos mediante distintos modelos predictivos sin extender su visión. Ninguno de los apartados que entrega estas conclusiones las justifica mediante el punto de vista psicológico o psiquiátrico, el cual podría complementar los resultados y mejorar la aplicación de estos modelos en el área médica.
->>>>>>> Stashed changes
+\noindent \textbf{Limitaciones y observaciones:} El análisis se limita a observar los registros y explicarlos mediante distintos modelos predictivos, sin ampliar su perspectiva. Ninguno de los apartados que presenta estas conclusiones las justifica desde un punto de vista psicológico o psiquiátrico, el cual podría complementar los resultados y mejorar la aplicación de estos modelos en el área médica. \textbf{Es importante mencionar}, por ello, que el artículo reconoce esta limitación y concluye que los modelos de predicción deberían ser utilizados en conjunto con el asesoramiento médico.
 
 \clearpage
 
