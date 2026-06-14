@@ -69,7 +69,7 @@ En el estudio, la Estadística se materializa en el análisis de correlación de
 La IA, en cambio, se expresa en modelos como Random Forest y XGBoost, evaluados por su desempeño predictivo (AUC = 97,05\,\%, F1 y precisión; Tang et al., 2024, Tabla~1). Estos modelos capturan relaciones complejas y no lineales que las técnicas clásicas no logran modelar (el artículo advierte que los métodos matemáticos tradicionales producen resultados menos precisos ante la complejidad del comportamiento humano), pero operan como cajas negras de baja interpretabilidad.
 
 % 4. Marco teórico: dos culturas (Breiman) y distinción explanatory/predictive (Shmueli)
-Esta tensión no es exclusiva del artículo. Breiman (2001) describió «dos culturas» del modelamiento: la del \textit{modelo de datos} ---estadística clásica, orientada a inferir la relación entre variables--- y la del \textit{modelo algorítmico} ---ML, orientado a predecir con precisión---. Shmueli (2010) formalizó esta diferencia entre \textit{explanatory modeling} y \textit{predictive modeling}. El artículo de Tang et al.\ (2024) opera en la segunda cultura y emplea SHAP (Lundberg \& Lee, 2017), fundamentado en los valores de Shapley de la teoría de juegos cooperativos, para reintroducir interpretabilidad.
+Esta tensión no es exclusiva del artículo. Breiman (2001) describió «dos culturas» del modelamiento: la del \textit{modelo de datos} estadística clásica, orientada a inferir la relación entre variables y la del \textit{modelo algorítmico} ML, orientado a predecir con precisión. Shmueli (2010) formalizó esta diferencia entre \textit{explanatory modeling} y \textit{predictive modeling}. El artículo de Tang et al.\ (2024) opera en la segunda cultura y emplea SHAP (Lundberg \& Lee, 2017), fundamentado en los valores de Shapley de la teoría de juegos cooperativos, para reintroducir interpretabilidad.
 
 % 5. Puente XAI: SHAP devuelve interpretabilidad al modelo predictivo
 El puente entre ambos enfoques es, precisamente, la IA Explicable (XAI). Mediante SHAP, el artículo reintroduce la interpretabilidad en los modelos predictivos, asignando a cada variable una contribución positiva o negativa a la predicción individual. Así, la capacidad predictiva de la IA converge con la vocación explicativa de la Estadística.
@@ -86,24 +86,15 @@ La distinción es, por tanto, funcional más que tajante. Varios de los ``modelo
 
 \medskip
 
-Primero hay que determinar qué definiciones hay de \textit{explicar} y \textit{predecir}, y qué definición se utilizará para responder esta pregunta.
+Para responder esta pregunta primero hay que determinar qué definiciones hay de \textit{explicar} y \textit{predecir}, y qué definición se utilizará para responder esta pregunta.
 
 \textbf{Predecir} tiene una definición según la RAE: \textit{``Anunciar por revelación, conocimiento fundado, intuición o conjetura algo que ha de suceder.''}
 
-\textbf{Explicar}, en cambio, tiene varias definiciones según la RAE. Se considerarán:
+\textbf{Explicar}, en cambio, tiene varias definiciones según la RAE; se considerarán las que son pertinentes al artículo a comentar: \textit{``Declarar o exponer cualquier materia, doctrina o texto difícil, con palabras muy claras para hacerlos más perceptibles.''} y \textit{``Dar a conocer la causa o motivo de algo.''}
 
-\begin{itemize}
-  \item \textit{``Declarar o exponer cualquier materia, doctrina o texto difícil, con palabras muy claras para hacerlos más perceptibles.''}
-  \item \textit{``Dar a conocer la causa o motivo de algo.''}
-\end{itemize}
+Si se considera la primera definición, la respuesta es \textbf{sí}. Aunque el artículo no realiza una comparación explícita de ambos conceptos, funcionalmente los trata como equivalentes. El objetivo del artículo es presentar los modelos de Inteligencia Artificial Explicable como una forma viable de determinar si un paciente es suicida o no; esto indica que el objetivo de la utilización de estos modelos es la predicción. La forma en que estos modelos predicen es condensando la información de la base de datos en los elementos más importantes y presentándolos de forma simplificada. Desde otra perspectiva, estos modelos exponen la información de modo que el receptor la entienda; es decir, los modelos de Inteligencia Artificial explican la información. En pocas palabras, el objetivo de este tipo de modelos es predecir, y la forma en que predicen incorpora la explicación sobre la distribución de los parámetros.
 
-Se consideran solo estas dos definiciones, dado que el resto se sitúa en un contexto más personal y subjetivo, mientras que el artículo a analizar toma un lenguaje y presentación más formal y objetivo.
-
-Si se considera la primera definición, la respuesta es \textbf{sí}. El objetivo del artículo es presentar los modelos de Inteligencia Artificial Explicable como una forma viable de determinar si un paciente es suicida o no. En el desarrollo del texto se expone sobre el resultado de estos modelos, indicando al final cómo las explicaciones que entrega pueden ayudar a predecir el suicidio. Si bien no realiza una comparación directa de ambos conceptos, funcionalmente los trata como equivalentes. El objetivo de este tipo de modelos es ``predecir'', y la forma en que predice es con la explicación que da a la distribución de los parámetros.
-
-En cambio, si se considera la segunda definición, la respuesta es \textbf{no}. La razón es que los modelos de Inteligencia Artificial estudian a través de la correlación; algo importante es que ``la correlación no implica causalidad'', y por ello no necesariamente al dar un análisis de correlación se está entregando la causa de que una persona sea suicida.
-
-En el artículo esta equivalencia se materializa en la IA Explicable (XAI): el mejor clasificador es Random Forest (AUC = 97,05\,\% con aumento de datos; Tang et al., 2024, Tabla~1), mientras que XGBoost y los valores SHAP aportan la capa ``explicativa'', mostrando cuánto contribuye cada variable a la predicción. Así, la ``explicación'' es la atribución de importancia a las variables, no una explicación causal del fenómeno: la distribución de los valores SHAP es el mecanismo con el que el modelo justifica su predicción. De hecho, el propio artículo reconoce que la interpretabilidad de XGBoost es inferior a la de los modelos lineales y que el objetivo de la XAI es ganar la confianza clínica de los psiquiatras, no explicar causalmente el suicidio.
+En cambio, si se considera la segunda definición, la respuesta es \textbf{no}. Los modelos de Inteligencia Artificial estudian principalmente correlaciones e interacciones entre parámetros. En estadística, la correlación no implica causalidad; por ello, un análisis correlacional no demuestra la causa de que una persona sea suicida. Para establecer causalidad en psicología se requieren diseños y análisis que controlen el azar y las variables confundentes, algo que los modelos del artículo no garantizan. Por tanto, no es suficiente un análisis exclusivamente basado en IA para indicar causalidad, y se necesitarían análisis adicionales para que el artículo explique las variables.
 
 \clearpage
 
@@ -114,19 +105,15 @@ En el artículo esta equivalencia se materializa en la IA Explicable (XAI): el m
 
 \medskip
 
-Revisando los dos apartados que entregan un análisis del tema a investigar:
+Para responder esta pregunta se evaluarán todas las conclusiones obtenidas relacionadas al fenómeno investigado y la base que llevó a cada conclusión:
 
-\begin{itemize}
-  \item En el apartado \textbf{``análisis de correlación''}, se concluyó que la gente desempleada tiene el mayor riesgo de suicidio, y el personal de seguridad y policías tienen el menor riesgo. También se concluye que las causas de suicidio más presentes son ``problemas familiares'', ``enfermedades crónicas'' y ``desórdenes mentales''. Ambas conclusiones se hacen en base a los gráficos generados por el análisis de correlación; en ningún caso se explica o cuestiona por qué se obtuvo este resultado y qué significa para las futuras investigaciones de este tema.
+La primera conclusión es que aquellos que fallecen por suicidio tienden a ser personas con desordenes o enfermedades. La conclusión se obtiene mediante una nube de palabras formada con la base de datos obtenida, no se entrega otro tipo de información para justificar la inferencia.
 
-  \item En el apartado \textbf{``análisis por IA explicable''}, se obtiene que factores como problemas con la ira o el nivel de educación de las personas pueden ser elementos cruciales para determinar el riesgo de suicidio de los individuos si toman ciertos valores. Las conclusiones se dan a través de un análisis por un modelo XGBoost y el cálculo de los valores SHAP para todas las variables, y no se desarrolla a través de otra perspectiva. No se entregan explicaciones psicológicas de por qué estos aspectos influyen en que una persona sea suicida.
-\end{itemize}
+La segunda conclusión fue que la gente con altos ingresos y una vocación respetable tienen menor tasa de suicidios. Se llegó a esta conclusión a través de un gráfico de barras de la base de datos que mostraba que la gente desempleada tiene el mayor riesgo de suicidio, y el personal de seguridad y policías tienen el menor riesgo. Se menciona también que la conclusión obtenida coincide con el resultado de otros estudios, aunque no profundiza en los motivos de la existencia del patrón encontrado, solo menciona que existe.
 
-Se observa que ninguno de los dos apartados justifica sus conclusiones mediante el punto de vista psicológico o psiquiátrico. El análisis se limita a observar los registros y explicarlos mediante distintos modelos.
+Posteriormente mediante modelos de predicción, la matriz de correlación y el cálculo de los valores SHAP se obtiene que factores como tener problemas con la ira o depresión, pueden aumentar el riesgo de suicidio de los individuos. Por el otro lado, factores como un alto nivel de educación disminuyen el riesgo de suicidio. Los resultados sacados coinciden con las conclusiones anteriores con la diferencia que fueron obtenidos mediante métodos más complejos. Sin embargo, a pesar de ofrecer mayor evidencia en la forma de los valores SHAP, estos son calculados utilizando la misma base de datos, por lo que el patrón de basar las conclusiones solo en la base de datos continua.
 
-Las variables de mayor impacto global según el análisis SHAP son: ira (\textit{anger}), depresión (\textit{depression}) y aislamiento social (Tang et al., 2024, Fig.~6b). Las hospitalizaciones psiquiátricas previas (\textit{Lifetime Psychiatric}) también tienen peso considerable. El patrón surge desde los datos (XGBoost + SHAP), no desde una teoría psicológica explícita. El artículo nombra variables como la ira porque emergen del modelo, no porque desarrolle una justificación teórica previa que luego confirme con datos. El propio texto lo admite: declara que sus resultados \textit{``align with the existing knowledge in psychiatry and provide a data-driven perspective to justify the experimental findings''} (Tang et al., 2024, Discussion, p.~8); es decir, la teoría psicológica se invoca a posteriori como respaldo, no como punto de partida.
-
-Por último, cabe señalar un reparo metodológico en el análisis por ocupación: el mayor riesgo está en personas desempleadas y en trabajos de agricultura y silvicultura, y el menor en policías y personal de seguridad. Sin embargo, el N varía considerablemente entre grupos ocupacionales y la mayoría de los pacientes está desempleada. Para comparar de forma justa habría que ponderar por el tamaño de cada grupo.
+El análisis se limita a observar los registros y explicarlos mediante distintos modelos predictivos sin extender su visión. Ninguno de los apartados que entrega estas conclusiones las justifica mediante el punto de vista psicológico o psiquiátrico, el cual podría complementar los resultados y mejorar la aplicación de estos modelos, dado que estos serían utilizados en el área médica.
 
 \clearpage
 
