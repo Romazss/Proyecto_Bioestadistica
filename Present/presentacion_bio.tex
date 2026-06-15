@@ -103,43 +103,17 @@
 \setbeamertemplate{itemize item}   {\color{PUCgold}\rule[0.15ex]{0.6ex}{0.6ex}}
 \setbeamertemplate{itemize subitem}{\color{PUCmid}\small$\triangleright$}
 
-% ── Portada personalizada ──────────────────────────────────
+% ── Portada simplificada (estilo Informe) ───────────────────
 \setbeamertemplate{title page}{%
-  \begin{tikzpicture}[remember picture, overlay]
-    % Fondo blanco
-    \fill[PUCwhite] (current page.south west) rectangle (current page.north east);
-    % Banda azul superior
-    \fill[PUCblue] (current page.north west) rectangle
-                   ([yshift=-0.18\paperheight]current page.north east);
-    % Banda dorada bajo la azul
-    \fill[PUCgold] ([yshift=-0.18\paperheight]current page.north west) rectangle
-                   ([yshift=-0.21\paperheight]current page.north east);
-    % Banda dorada inferior
-    \fill[PUCgold] (current page.south west) rectangle
-                   ([yshift=0.04\paperheight]current page.south east);
-  \end{tikzpicture}%
-  \vspace{0.5em}
-  \begin{columns}[c]
-    \begin{column}{0.25\textwidth}
-      \centering
-      \includegraphics[width=0.85\textwidth]{../Latex/logo-mat-02.png}
-    \end{column}
-    \begin{column}{0.72\textwidth}
-      \raggedright
-      {\usebeamerfont{title}\color{PUCblue}\inserttitle\par}
-      \vspace{0.5em}
-      {\usebeamerfont{subtitle}\color{PUCgold}\insertsubtitle\par}
-      \vspace{1em}
-      \begin{beamercolorbox}[wd=\textwidth, rounded=true, sep=0.4em]{block body}
-        \small
-        \textbf{Integrantes:}\\[0.3em]
-        Esteban D. Román Soto\\
-        William E. Mora Estrada
-      \end{beamercolorbox}
-      \vspace{0.5em}
-      {\small\color{PUCgray}\insertinstitute\\[0.3em]\insertdate}
-    \end{column}
-  \end{columns}
+  \begin{center}
+    \vspace*{1cm}
+    \includegraphics[width=0.35\textwidth]{../Latex/logo-mat-02.png}\\[1.2cm]
+    {\usebeamerfont{title}\color{PUCblue}\inserttitle}\\[0.6cm]
+    {\usebeamerfont{subtitle}\color{PUCmid}\insertsubtitle}\\[1cm]
+    {\usebeamerfont{author}\color{PUCgray}\insertauthor}\\[0.6cm]
+    {\usebeamerfont{institute}\color{PUCgold}\insertinstitute}\\[0.4cm]
+    {\usebeamerfont{date}\color{PUCgold}\insertdate}
+  \end{center}
 }
 
 % ── Metadatos ──────────────────────────────────────────────
@@ -237,13 +211,22 @@
     \draw[arr] (ml)    -- (rf);
     \draw[arr] (rf)    -- (shap);
     \draw[arr] (shap)  -- (out);
-  \end{tikzpicture}}%
+  \end{tikzpicture}%
+}
   \end{center}
   \vspace{0.4em}
-  \begin{block}{Predictores principales (valores SHAP)}
+  \begin{block}{XAI (nota)}
     \centering\small
-    \textbf{Ira} \quad $\cdot$ \quad \textbf{Depresión} \quad $\cdot$ \quad \textbf{Aislamiento social}
+    Valores SHAP y discusión interpretativa se presentan en la sección de definiciones y resultados, para mantener el flujo metodológico claro.
   \end{block}
+\end{frame}
+
+\begin{frame}{Aumento de observaciones}
+  \framesubtitle{CTGAN y SMOTENC para balanceo de datos}
+  \begin{center}
+    \includegraphics[width=0.55\textwidth]{../Tang_info/Aumento_de_Observaciones.jpg}
+  \end{center}
+
 \end{frame}
 
 % ============================================================
@@ -272,7 +255,7 @@
       \end{block}
     \end{column}
   \end{columns}
-  \vspace{0.6em}
+  \vspace{0.3em}
   \begin{alertblock}{Marco teórico de referencia}
     \begin{itemize}
       \item \textbf{Breiman (2001):} \textit{dos culturas} — modelo de datos vs.\ modelo algorítmico.
@@ -281,7 +264,18 @@
   \end{alertblock}
 \end{frame}
 
-\begin{frame}{XAI como puente entre las dos culturas}
+\begin{frame}{Análisis de correlaciones}
+  \framesubtitle{Correlación de Spearman entre variables}
+  \begin{center}
+    \includegraphics[width=0.55\textwidth]{../Tang_info/Correlación_Positiva.jpg}
+  \end{center}
+  \begin{block}{Interpretación estadística}
+    \small
+    Las correlaciones permiten identificar relaciones lineales entre variables antes de aplicar modelos de ML.
+  \end{block}
+\end{frame}
+
+\begin{frame}[shrink=5]{XAI como puente entre las dos culturas}
   \framesubtitle{Pregunta 1 — Conclusión}
   \begin{center}
   \resizebox{0.85\textwidth}{!}{%
@@ -303,12 +297,23 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Valores SHAP — Múltiples variables}
+  \framesubtitle{Importancia de características según SHAP}
+  \begin{center}
+    \includegraphics[width=0.55\textwidth]{../Tang_info/SHAP_Multiples_Variables.jpg}
+  \end{center}
+  \begin{alertblock}{Interpretabilidad del modelo}
+    \small
+    SHAP cuantifica la contribución de cada variable a la predicción, revelando qué factores son más determinantes.
+  \end{alertblock}
+\end{frame}
+
 % ============================================================
 \section{P2 — Predicción vs.\ Explicación}
 % ============================================================
 
-\begin{frame}{Pregunta 2 — Punto de partida}
-  \framesubtitle{¿El artículo distingue entre predicción y explicación?}
+% --- Diapositiva dedicada a definiciones (separada)
+\begin{frame}{Definiciones}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{exampleblock}{Predecir (RAE, def.\ 1)}
@@ -316,16 +321,28 @@
       \end{exampleblock}
       \vspace{0.4em}
       \begin{exampleblock}{Explicar — def.\ 2 (expositiva)}
-        «Declarar una materia con palabras claras para hacerla \textbf{más perceptible}.»\par
-        \smallskip\textit{predicción $\approx$ explicación}
+        «Declarar una materia con palabras claras para hacerla \textbf{más perceptible}.»
       \end{exampleblock}
     \end{column}
     \begin{column}{0.48\textwidth}
       \begin{alertblock}{Explicar — def.\ 5 (causal)}
-        «Dar a conocer la \textbf{causa o motivo} de algo.»\par
-        \smallskip\textit{predicción $\neq$ explicación}
+        «Dar a conocer la \textbf{causa o motivo} de algo.»
       \end{alertblock}
-      \vspace{0.4em}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- Diapositiva de inicio de P2 (resumida, con bloque sobre SHAP)
+\begin{frame}{Pregunta 2 — Punto de partida}
+  \framesubtitle{¿El artículo distingue entre predicción y explicación?}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Contexto}
+        \small
+        El artículo aplica XAI para interpretar modelos predictivos; aquí discutimos si esa interpretación equivale a explicar el fenómeno.
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
       \begin{block}{SHAP explica el \textit{modelo}, no el fenómeno}
         Atribuye contribuciones a las variables \textbf{dentro del modelo}.
         No establece mecanismos causales.
@@ -334,11 +351,21 @@
   \end{columns}
 \end{frame}
 
+% --- Diapositiva breve: conclusión sobre la definición 1
+\begin{frame}{Definición 1 — Conclusión}
+  \framesubtitle{Predecir (RAE, def.\ 1)}
+  \begin{center}
+    \begin{block}{Conclusión}
+      Bajo la definición 1 (predecir): la predicción puede aproximarse a una explicación expositiva. SHAP aporta interpretabilidad del modelo, pero no inferencia causal.
+    \end{block}
+  \end{center}
+\end{frame}
+
 \begin{frame}{Predicción $\neq$ Explicación causal}
   \framesubtitle{Pregunta 2 — Marco de Shmueli (2010) y Pearl (2009)}
   \begin{itemize}
-    \item \textbf{Shmueli (2010):} el artículo se inscribe en la cultura \textit{predictiva}:
-          su criterio de éxito es el desempeño ($\text{AUC} = 97{,}05\,\%$), no la
+        \item \textbf{Shmueli (2010):} el artículo se inscribe en la cultura \textit{predictiva}:
+          su criterio de éxito es el desempeño (AUC = 97{,}05\%), no la
           verificación de una hipótesis causal.
     \item \textbf{Pearl (2009):} la correlación no implica causalidad.
           Sin un diseño que controle confusores, no es posible elevar una
@@ -361,7 +388,7 @@
 \section{P3 — Validez del patrón}
 % ============================================================
 
-\begin{frame}{Pregunta 3 — Evidencia presentada}
+\begin{frame}[shrink=5]{Pregunta 3 — Evidencia presentada}
   \framesubtitle{¿Qué justifica que el patrón corresponde al fenómeno y no a un artefacto?}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
@@ -427,6 +454,7 @@
     \textit{(Tang et al., 2024, Clinical Implications and Future Directions)}
   \end{block}
 \end{frame}
+
 
 % ============================================================
 \section{Conclusiones}

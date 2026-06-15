@@ -1,6 +1,6 @@
 \babel@toc {spanish}{}\relax 
 \beamer@sectionintoc {1}{Contexto del Artículo}{3}{0}{1}
-\beamer@sectionintoc {2}{P1 — IA vs.\ Estadística}{5}{0}{2}
-\beamer@sectionintoc {3}{P2 — Predicción vs.\ Explicación}{7}{0}{3}
-\beamer@sectionintoc {4}{P3 — Validez del patrón}{9}{0}{4}
-\beamer@sectionintoc {5}{Conclusiones}{11}{0}{5}
+\beamer@sectionintoc {2}{P1 — IA vs.\ Estadística}{6}{0}{2}
+\beamer@sectionintoc {3}{P2 — Predicción vs.\ Explicación}{10}{0}{3}
+\beamer@sectionintoc {4}{P3 — Validez del patrón}{14}{0}{4}
+\beamer@sectionintoc {5}{Conclusiones}{16}{0}{5}
